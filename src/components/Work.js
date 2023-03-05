@@ -22,12 +22,10 @@ const Work = () => {
 					>
 						<div>
 							<h2 className="h2 leading-tight text-accent">
-								My latest <br /> work
+								Featured <br /> Projects
 							</h2>
 							<p className="max-w-sm mb-16 ">
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-								Tempore expedita consequatur a animi nam, numquam, distinctio
-								ducimus fugit
+								These are some major project that I have been working on recently.
 							</p>
 							<button className="btn btn-sm">View all projects</button>
 						</div>

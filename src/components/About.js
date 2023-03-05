@@ -35,13 +35,10 @@ const About = () => {
            className="flex-1">
 						<h2 className="h2 text-accent">About me</h2>
 						<h3 className="h3 mb-4">
-							I'm a freelance frontend developer with over 2+ years of project
-							experience and 1 year of working experience
+						I'm a software developer proficient in React, CSS, and JavaScript. 
 						</h3>
 						<p className="mb-6">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-							dolor earum exercitationem nemo quisquam. Rerum consequuntur illum
-							est eveniet asperiores natus
+						Passionate about creating stunning, user-friendly web applications and always eager to learn and grow.
 						</p>
 						<div className="flex gap-x-6 lg:gap-x-10 mb-12">
 							<div>

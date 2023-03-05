@@ -2,7 +2,8 @@ import React from "react";
 
 import image from "../assets/avatar.svg";
 
-import { FaBlog, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiHashnode } from "react-icons/si";
 
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
@@ -37,7 +38,7 @@ const Banner = () => {
 								once: false,
 								amount: 0.7,
 							}}
-							className="mb-6 text-[36px] lg:text-[60px] font-secondary font-semibold uppercase leading-[1]"
+							className="mb-6 text-[36px] lg:text-[55px] font-secondary font-semibold uppercase leading-[1]"
 						>
 							<span className="text-white mr-4">I am a</span>
 							<TypeAnimation
@@ -68,8 +69,7 @@ const Banner = () => {
 							className="mb-8 max-w-lg mx-auto lg:mx-0"
 						>
 							I am a Frontend Developer with great interest in JavaScript, React
-							and CSS. I am working as a frontend developer at @Cosmocloud.ai
-							and previously worked as SDE Intern at Scaler Academy.
+							and CSS.
 						</motion.p>
 						<motion.div
 							variants={fadeIn("up", 0.6)}
@@ -87,23 +87,35 @@ const Banner = () => {
 							</a>
 						</motion.div>
 						<motion.div
-							variants={fadeIn("up", 0.7)}
+							variants={fadeIn("up", 0.5)}
 							initial="hidden"
 							whileInView={"show"}
 							viewport={{
 								once: false,
-								amount: 0.7,
+								amount: 0.3,
 							}}
 							className="flex text-[20px] gap-x-6 max-w-max mx-auto lg:mx-0"
 						>
-							<a href="#">
+							<a
+								href="https://github.com/abhinandanmishra1"
+								target="_blank"
+								rel="noreferrer"
+							>
 								<FaGithub />
 							</a>
-							<a href="#">
+							<a
+								href="https://www.linkedin.com/in/abhinandanmishra1/"
+								target="_blank"
+								rel="noreferrer"
+							>
 								<FaLinkedin />
 							</a>
-							<a href="#">
-								<FaBlog />
+							<a
+								href="https://abhinandanmishra1.hashnode.dev/"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<SiHashnode />
 							</a>
 						</motion.div>
 					</div>
@@ -115,7 +127,7 @@ const Banner = () => {
 						viewport={{
 							once: false,
 							amount: 0.7,
-						}} 
+						}}
 						className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px] "
 					>
 						<img src={image} alt="abhinandan mishra" />
