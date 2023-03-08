@@ -18,7 +18,7 @@ const Work = () => {
 							once: false,
 							amount: 0.3,
 						}}
-						className="flex-1 flex flex-col gap-y-12 mb-10 lg:mb-0"
+						className="flex-1 flex flex-col gap-y-12 mb-10 lg:mb-0 gap-10"
 					>
 						<div>
 							<h2 className="h2 leading-tight text-accent">
@@ -29,18 +29,18 @@ const Work = () => {
 							</p>
 							<button className="btn btn-sm">View all projects</button>
 						</div>
-						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
+						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer">
 							<div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
 							<img
-								className="group-hover:scale-125 transition-all duration-500"
+								className="group-hover:scale-125 transition-all duration-500 w-[1440px]"
 								src={Img1}
 								alt=""
 							/>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-								<span className="text-gradient">UI/UX Design</span>
+								<span className="text-gradient">Portfolio Website</span>
 							</div>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
-								<span className="text-white text-3xl">Project Title</span>
+								<span className="text-white text-2xl">It is my personal portfolio website.</span>
 							</div>
 						</div>
 					</motion.div>
@@ -54,32 +54,32 @@ const Work = () => {
 						}}
 						className="flex-1 flex flex-col gap-y-10"
 					>
-						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
+						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer">
 							<div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
 							<img
-								className="group-hover:scale-125 transition-all duration-500"
+								className="group-hover:scale-125 transition-all duration-500 w-[1440px]"
 								src={Img2}
 								alt=""
 							/>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-								<span className="text-gradient">UI/UX Design</span>
+								<span className="text-gradient">CodersPortfolio</span>
 							</div>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
-								<span className="text-white text-3xl">Project Title</span>
+								<span className="text-white text-2xl">A platform to create personalized portfolio</span>
 							</div>
 						</div>
-						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
+						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer">
 							<div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
 							<img
-								className="group-hover:scale-125 transition-all duration-500"
+								className="group-hover:scale-125 transition-all duration-500 w-[1440px]"
 								src={Img3}
 								alt=""
 							/>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-								<span className="text-gradient">UI/UX Design</span>
+								<span className="text-gradient">Leetcode IDE Clone</span>
 							</div>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
-								<span className="text-white text-3xl">Project Title</span>
+								<span className="text-white text-2xl">It is clone of leetcode IDE</span>
 							</div>
 						</div>
 					</motion.div>
