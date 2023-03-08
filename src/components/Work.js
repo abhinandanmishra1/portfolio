@@ -40,7 +40,7 @@ const Work = () => {
 								<span className="text-gradient">Portfolio Website</span>
 							</div>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
-								<span className="text-white text-2xl">It is my personal portfolio website.</span>
+								<span className="text-white text-2xl">Personal portfolio website</span>
 							</div>
 						</div>
 					</motion.div>
@@ -65,7 +65,7 @@ const Work = () => {
 								<span className="text-gradient">CodersPortfolio</span>
 							</div>
 							<div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
-								<span className="text-white text-2xl">A platform to create personalized portfolio</span>
+								<span className="text-white text-2xl">Platform to create portfolio</span>
 							</div>
 						</div>
 						<div className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer">
