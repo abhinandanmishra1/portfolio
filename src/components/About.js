@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import Slider from "./Slider";
 import Contact from "./Contact";
-import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume_MMMUT.pdf";
+import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume.pdf";
 import { PdfViewer } from "../common/PdfViewer";
 import { scroller } from "react-scroll";
 
