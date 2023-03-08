@@ -8,6 +8,7 @@ import Slider from "./Slider";
 import Contact from "./Contact";
 import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume_MMMUT.pdf";
 import { PdfViewer } from "../common/PdfViewer";
+import { scroller } from "react-scroll";
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -18,6 +19,13 @@ const About = () => {
 
   const [contactSliderOpen, setContactSliderOpen] = useState(false);
   const [resumeSliderOpen, setResumeSliderOpen] = useState(false);
+
+  const scrollTo = () => {
+    scroller.scrollTo('contact', {
+      smooth: true,
+      spy: true
+    });
+  }
 
   const openContactSlider = () => {
     setClicked(true);
@@ -110,32 +118,45 @@ const About = () => {
               </div>
             </div>
             <div className="flex gap-x-8 items-center">
-              <button className="btn btn-lg pointer-events-none md:pointer-events-auto" onClick={openContactSlider}>
+              <button
+                className="btn btn-lg hidden md:block"
+                onClick={openContactSlider}
+              >
+                Contact Me
+              </button>
+              <button
+                className="btn btn-lg md:hidden"
+                onClick={scrollTo}
+              >
                 Contact Me
               </button>
               <p
-                className="text-gradient btn-link cursor-pointer pointer-events-none md:pointer-events-auto"
+                className="text-gradient btn-link cursor-pointer hidden md:block"
                 onClick={openResumeSlider}
               >
                 My Resume
               </p>
+              <a
+                href="https://drive.google.com/u/0/uc?id=1KY2r4ij1kZl61QXyY6Q2wwKP2xQ3pjD7&export=download"
+                className="text-gradient btn-link cursor-pointer md:hidden"
+              >
+                My Resume
+              </a>
             </div>
           </motion.div>
         </div>
       </div>
-      {
-        inView && clicked 
-        && (
-          <>
-          { contactSliderOpen &&
-           <Slider
+      {inView && clicked && (
+        <>
+          {contactSliderOpen && (
+            <Slider
               isOpen={contactSliderOpen}
               onClose={onCloseContactSlider}
               direction="left"
             >
               <Contact showTitle={false} />
             </Slider>
-          }
+          )}
           {resumeSliderOpen && (
             <Slider
               isOpen={resumeSliderOpen}
@@ -145,9 +166,8 @@ const About = () => {
               <PdfViewer pdf={ResumePdf} />
             </Slider>
           )}
-          </> 
-        )
-      }
+        </>
+      )}
     </section>
   );
 };

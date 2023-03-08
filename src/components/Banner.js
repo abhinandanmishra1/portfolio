@@ -13,6 +13,7 @@ import Contact from "./Contact";
 import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume_MMMUT.pdf";
 import { PdfViewer } from "../common/PdfViewer";
 import { useInView } from "react-intersection-observer";
+import { scroller } from "react-scroll";
 
 const Banner = () => {
   const [clicked, setClicked] = useState(false);
@@ -42,6 +43,14 @@ const Banner = () => {
   const onCloseResumeSlider = () => {
     setResumeSliderOpen(false);
   };
+
+  const scrollTo = () => {
+    scroller.scrollTo('contact', {
+      smooth: true,
+      spy: true
+    });
+  }
+
   return (
     <section
       className="min-h-[85vh] lg:min-h[78vh] flex items-center"
@@ -115,17 +124,29 @@ const Banner = () => {
               className="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0"
             >
               <button
-                className="btn btn-lg pointer-events-none md:pointer-events-auto"
+                className="btn btn-lg hidden md:block"
                 onClick={openContactSlider}
               >
                 Contact Me
               </button>
+              <button
+                className="btn btn-lg md:hidden"
+                onClick={scrollTo}
+              >
+                Contact Me
+              </button>
               <p
-                className="text-gradient btn-link cursor-pointer pointer-events-none md:pointer-events-auto"
+                className="text-gradient btn-link cursor-pointer hidden md:block"
                 onClick={openResumeSlider}
               >
                 My Resume
               </p>
+              <a
+                href="https://drive.google.com/u/0/uc?id=1KY2r4ij1kZl61QXyY6Q2wwKP2xQ3pjD7&export=download"
+                className="text-gradient btn-link cursor-pointer md:hidden"
+              >
+                My Resume
+              </a>
             </motion.div>
             <motion.div
               variants={fadeIn("up", 0.5)}
