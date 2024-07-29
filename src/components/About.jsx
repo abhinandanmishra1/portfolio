@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
-import { fadeIn } from "../variants";
-import Slider from "./Slider";
 import Contact from "./Contact";
+import CountUp from "react-countup";
 import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume.pdf";
-import { PdfViewer } from "../common/PdfViewer";
+import Slider from "./Slider";
+import { fadeIn } from "../variants";
+import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -18,39 +17,27 @@ const About = () => {
   const [clicked, setClicked] = useState(false);
 
   const [contactSliderOpen, setContactSliderOpen] = useState(false);
-  const [resumeSliderOpen, setResumeSliderOpen] = useState(false);
 
   const scrollTo = () => {
-    scroller.scrollTo('contact', {
+    scroller.scrollTo("contact", {
       smooth: true,
-      spy: true
+      spy: true,
     });
-  }
+  };
 
   const openContactSlider = () => {
     setClicked(true);
-    setResumeSliderOpen(false);
     setContactSliderOpen(true);
-  };
-
-  const openResumeSlider = () => {
-    setClicked(true);
-    setContactSliderOpen(false);
-    setResumeSliderOpen(true);
   };
 
   const onCloseContactSlider = () => {
     setContactSliderOpen(false);
   };
 
-  const onCloseResumeSlider = () => {
-    setResumeSliderOpen(false);
-  };
-
   return (
     <section ref={ref} className="section" id="about">
-      <div className="container mx-auto">
-        <div className="flex flex-col gap-y-10 lg:flex-row lg:items-center lg:gap-x-20 lg:gap-y-0 h-screen">
+      <div className="mx-auto container">
+        <div className="flex lg:flex-row flex-col lg:items-center gap-y-10 lg:gap-x-20 lg:gap-y-0 h-screen">
           <motion.div
             variants={fadeIn("right", 0.3)}
             initial="hidden"
@@ -59,7 +46,7 @@ const About = () => {
               once: false,
               amount: 0.3,
             }}
-            className="flex-1 bg-about bg-contain bg-no-repeat h-[640px] mix-blend-lighten bg-top"
+            className="flex-1 bg-about bg-contain bg-no-repeat bg-top h-[640px] mix-blend-lighten"
           ></motion.div>
           <motion.div
             variants={fadeIn("left", 0.5)}
@@ -71,8 +58,8 @@ const About = () => {
             }}
             className="flex-1"
           >
-            <h2 className="h2 text-accent">About me</h2>
-            <h3 className="h3 mb-4">
+            <h2 className="text-accent h2">About me</h2>
+            <h3 className="mb-4 h3">
               I'm a software developer proficient in React, CSS, and JavaScript.
             </h3>
             <p className="mb-6">
@@ -81,7 +68,7 @@ const About = () => {
             </p>
             <div className="flex gap-x-6 lg:gap-x-10 mb-12">
               <div>
-                <div className="text-[40px] font-tertiary text-gradient">
+                <div className="font-tertiary text-[40px] text-gradient">
                   {inView && (
                     <>
                       <CountUp start={0} end={2} duration={2} />+
@@ -93,7 +80,7 @@ const About = () => {
                 </div>
               </div>
               <div>
-                <div className="text-[40px] font-tertiary text-gradient">
+                <div className="font-tertiary text-[40px] text-gradient">
                   {inView && (
                     <>
                       <CountUp start={0} end={20} duration={3} />+
@@ -105,7 +92,7 @@ const About = () => {
                 </div>
               </div>
               <div>
-                <div className="text-[40px] font-tertiary text-gradient">
+                <div className="font-tertiary text-[40px] text-gradient">
                   {inView && (
                     <>
                       <CountUp start={0} end={15} duration={3} />+
@@ -117,28 +104,19 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-x-8 items-center">
+            <div className="flex items-center gap-x-8">
               <button
-                className="btn btn-lg hidden md:block"
+                className="md:block hidden btn btn-lg"
                 onClick={openContactSlider}
               >
                 Contact Me
               </button>
-              <button
-                className="btn btn-lg md:hidden"
-                onClick={scrollTo}
-              >
+              <button className="md:hidden btn btn-lg" onClick={scrollTo}>
                 Contact Me
               </button>
-              <p
-                className="text-gradient btn-link cursor-pointer hidden md:block"
-                onClick={openResumeSlider}
-              >
-                My Resume
-              </p>
               <a
-                href="https://drive.google.com/u/0/uc?id=1KY2r4ij1kZl61QXyY6Q2wwKP2xQ3pjD7&export=download"
-                className="text-gradient btn-link cursor-pointer md:hidden"
+                href=""
+                className="text-gradient cursor-pointer btn-link"
               >
                 My Resume
               </a>
@@ -155,15 +133,6 @@ const About = () => {
               direction="left"
             >
               <Contact showTitle={false} />
-            </Slider>
-          )}
-          {resumeSliderOpen && (
-            <Slider
-              isOpen={resumeSliderOpen}
-              onClose={onCloseResumeSlider}
-              direction="left"
-            >
-              <PdfViewer pdf={ResumePdf} />
             </Slider>
           )}
         </>

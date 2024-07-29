@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Portolio of Abhinandan Mishra
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Abhinandan Mishra is a software engineer, current working as a Specialist Programmer at Infosys. He has good experience of building the solutions for complex problems and has built a bunch of complecated features till date within a short period of his career.
 
-## Available Scripts
+## Features Developed by Abhinandan
 
-In the project directory, you can run:
+### Secret Vaults System
+- While working as a full-time software engineer at Cosmocloud, He got multiple challenging opportunities and building the scret vault system was one of them.
+- Cosmocloud is a no-code backend platform, where users can build and deploy end to end backend using that platform only, and hence it's very important to provide a feature of adding the secrets of user that they can use in their backend logic but it must be secure as well, so that other's won't be able to access not even anyone in the team.
+- Hence, Abhinandan Came up with an approach that only the person with owner's access can add/update/delete the secrets in the platform but no-one can see the value of those secrets even the owners after setting it once.
+- Also, the secrets are again encoded with a public key, that is decoded using the private key, that our platform uses. Direct secrets are not stored in comocloud's database making it so secure from everyone.
 
-### `npm start`
+### Multiple environments feature
+- Working on multiple dev-environments become very important when you're working on a mid to big organisation where the feature must be tested well before making it live to production.
+- For handling this thing, multiple environments are required by the users to test the codes in those environments without touching the production environment.
+- However, there's a feature of rollback to previous deployment but this feature wouldn't cause any panic because "staging" or "development" environments are made for the testing purposes.
+- Earlier deployment was directly done on the one environment that is "Production Environment" but now users can create multiple environments and deploy their apis and models on those environments to carry out the testing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+----
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Continue...
