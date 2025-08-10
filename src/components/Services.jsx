@@ -4,12 +4,12 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { useT } from "../i18n";
+import { Button, ExternalLink, Section } from "./common";
 
 export const Services = () => {
     const { t } = useT();
-	return (
-		<section className="section" id="services">
-			<div className="container mx-auto">
+    return (
+        <Section id="services">
 				<div className="flex flex-col lg:flex-row">
 					<motion.div
 						variants={fadeIn("right", 0.3)}
@@ -25,7 +25,7 @@ export const Services = () => {
                         <h3 className="h3 max-w-[455px] mb-16">
                             {t('services.intro')}
                         </h3>
-                        <button className="btn btn-sm"> {t('services.cta')}</button>
+                        <Button size="sm"> {t('services.cta')}</Button>
 					</motion.div>
 					<motion.div
 						variants={fadeIn("left", 0.3)}
@@ -50,22 +50,18 @@ export const Services = () => {
 											</p>
 										</div>
 										<div className="flex flex-col flex-1 items-end">
-											<a
-												href={service.link}
-												target="_blank"
-												rel="noreferrer"
-												className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
-											>
+                                            <ExternalLink
+                                                href={service.link}
+                                                className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
+                                            >
 												<BsArrowUpRight />
-											</a>
-											<a
-												href={service.link}
-												target="_blank"
-												rel="noreferrer"
-												className="text-gradient text-sm"
-											>
+                                            </ExternalLink>
+                                            <ExternalLink
+                                                href={service.link}
+                                                className="text-gradient text-sm"
+                                            >
                                                 {t('services.seeMore')}
-											</a>
+                                            </ExternalLink>
 										</div>
 									</div>
 								);
@@ -73,7 +69,6 @@ export const Services = () => {
 						</div>
 					</motion.div>
 				</div>
-			</div>
-		</section>
+        </Section>
 	);
 };

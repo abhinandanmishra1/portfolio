@@ -2,12 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { useT } from "../i18n";
+import { Button, Section } from "./common";
 
 export const Contact = ({ showTitle = true }) => {
   const { t } = useT();
   return (
-    <section className="py-16 lg:section w-full overflow-hidden" id="contact">
-      <div className="container mx-auto">
+    <Section id="contact" className="py-16 lg:section w-full overflow-hidden" useBase={false}>
         <div className="flex flex-col lg:flex-row">
           {showTitle && (
             <motion.div
@@ -55,10 +55,9 @@ export const Contact = ({ showTitle = true }) => {
               name=""
               placeholder={t('contact.messagePlaceholder')}
             ></textarea>
-            <button className="btn btn-lg">{t('contact.sendMessage')}</button>
+            <Button size="lg">{t('contact.sendMessage')}</Button>
           </motion.form>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };

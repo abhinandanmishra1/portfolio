@@ -23,9 +23,9 @@ module.exports = {
         accent: '#B809C3',
       },
       backgroundImage: {
-        site: "url('./assets/site-bg.jpg')",
-        about: "url('./assets/about.png')",
-        services: "url('./assets/services.png')",
+        site: "url('https://abhicdn.netlify.app/images/portfolio-site-bg.jpg')",
+        about: "url('https://abhicdn.netlify.app/images/portfolio-about.png')",
+        services: "url('https://abhicdn.netlify.app/images/portfolio-services.png')",
       },
     },
   },

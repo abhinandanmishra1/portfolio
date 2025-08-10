@@ -5,11 +5,11 @@ import { Contact, Slider } from ".";
 import { SiHashnode } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import { fadeIn } from "../variants";
-import image from "../assets/avatar.svg";
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
 import { useT } from "../i18n";
+import { Button, ExternalLink, IconLink, Section } from "./common";
 
 export const Banner = () => {
   const { t } = useT();
@@ -37,12 +37,7 @@ export const Banner = () => {
   }
 
   return (
-    <section
-      className="min-h-[85vh] lg:min-h[78vh] flex items-center"
-      id="home"
-      ref={ref}
-    >
-      <div className="mx-auto container">
+    <Section id="home" className="min-h-[85vh] lg:min-h[78vh] flex items-center" ref={ref} useBase={false}>
         <div className="flex lg:flex-row flex-col lg:items-center gap-y-8 lg:gap-x-12">
           <div className="flex-1 font-secondary text-center lg:text-left">
             <motion.h1
@@ -98,26 +93,15 @@ export const Banner = () => {
               }}
               className="flex items-center gap-x-6 mx-auto lg:mx-0 mb-12 max-w-max"
             >
-              <button
-                className="md:block hidden btn btn-lg"
-                onClick={openContactSlider}
-              >
+              <Button className="md:block hidden" size="lg" onClick={openContactSlider}>
                 {t('banner.contactCta')}
-              </button>
-              <button
-                className="md:hidden btn btn-lg"
-                onClick={scrollTo}
-              >
+              </Button>
+              <Button className="md:hidden" size="lg" onClick={scrollTo}>
                 {t('banner.contactCta')}
-              </button>
-              <a
-                href={t('links.resume')}
-                target="_blank"
-                rel="noreferrer"
-                className="text-gradient cursor-pointer btn-link"
-              >
+              </Button>
+              <ExternalLink href={t('links.resume')} className="text-gradient cursor-pointer btn-link">
                 {t('banner.resumeText')}
-              </a>
+              </ExternalLink>
             </motion.div>
             <motion.div
               variants={fadeIn("up", 0.5)}
@@ -129,27 +113,15 @@ export const Banner = () => {
               }}
               className="flex gap-x-6 mx-auto lg:mx-0 max-w-max text-[20px]"
             >
-              <a
-                href={t('links.github')}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <IconLink href={t('links.github')}>
                 <FaGithub />
-              </a>
-              <a
-                href={t('links.linkedin')}
-                target="_blank"
-                rel="noreferrer"
-              >
+              </IconLink>
+              <IconLink href={t('links.linkedin')}>
                 <FaLinkedin />
-              </a>
-              <a
-                href={t('links.blog')}
-                target="_blank"
-                rel="noreferrer"
-              >
+              </IconLink>
+              <IconLink href={t('links.blog')}>
                 <SiHashnode />
-              </a>
+              </IconLink>
             </motion.div>
           </div>
 
@@ -163,10 +135,9 @@ export const Banner = () => {
             }}
             className="lg:flex flex-1 hidden max-w-[320px] lg:max-w-[482px]"
           >
-            <img src={image} alt={t('banner.imageAlt')} />
+            <img src={t('banner.image')} alt={t('banner.imageAlt')} />
           </motion.div>
         </div>
-      </div>
       {inView && clicked && (
         <>
           {contactSliderOpen && (
@@ -180,6 +151,6 @@ export const Banner = () => {
           )}
         </>
       )}
-    </section>
+    </Section>
   );
 };

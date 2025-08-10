@@ -22,6 +22,7 @@ const en = {
       'I am a Frontend Developer with great interest in JavaScript, React and CSS.',
     contactCta: 'Contact Me',
     resumeText: 'My Resume',
+    image: "https://abhicdn.netlify.app/images/avatar.svg",
     imageAlt: 'abhinandan mishra',
   },
   about: {
@@ -71,9 +72,9 @@ const en = {
       'These are some major project that I have been working on recently.',
     cta: 'View all projects',
     projects: [
-      { title: 'Portfolio Website', subtitle: 'Personal portfolio website', },
-      { title: 'CodersPortfolio', subtitle: 'Platform to create portfolio' },
-      { title: 'Leetcode IDE Clone', subtitle: 'It is clone of leetcode IDE' },
+      { title: 'Portfolio Website', subtitle: 'Personal portfolio website', link: '/', github: 'https://github.com/abhinandanmishra1/portfolio', image: 'https://abhicdn.netlify.app/images/portfolio.png' },
+      { title: 'CodersPortfolio', subtitle: 'Platform to create portfolio', link: 'https://codersportfolio.vercel.app/', github: 'https://github.com/abhinandanmishra1/coders-portfolio', image: 'https://abhicdn.netlify.app/images/coders-portfolio.png' },
+      { title: 'Leetcode IDE Clone', subtitle: 'It is clone of leetcode IDE', link: 'https://leetcode-ide.vercel.app/', github: 'https://github.com/abhinandanmishra1/leetcode-ide', image: 'https://abhicdn.netlify.app/images/leetcode-ide.png' },
     ],
   },
   contact: {

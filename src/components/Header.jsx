@@ -1,5 +1,6 @@
 import React from 'react';
 import { useT } from '../i18n';
+import { Button } from './common';
 
 export const Header = () => {
   const { t } = useT();
@@ -14,7 +15,7 @@ export const Header = () => {
             <span className='logo'>{t('profile.firstName')}</span> {t('profile.lastName')}
           </a>
 
-          <button className='btn btn-sm' onClick={openLinkedin}>{t('header.hireMe')}</button>
+          <Button size="sm" onClick={openLinkedin}>{t('header.hireMe')}</Button>
         </div>
     </div>
   </header>

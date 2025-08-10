@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
 import { useT } from "../i18n";
+import { Section } from "./common";
 
 export const About = () => {
   const { t } = useT();
@@ -35,8 +36,7 @@ export const About = () => {
   };
 
   return (
-    <section ref={ref} className="section" id="about">
-      <div className="mx-auto container">
+    <Section ref={ref} id="about">
         <div className="flex lg:flex-row flex-col lg:items-center gap-y-10 lg:gap-x-20 lg:gap-y-0 h-screen">
           <motion.div
             variants={fadeIn("right", 0.3)}
@@ -98,7 +98,6 @@ export const About = () => {
             </div>
           </motion.div>
         </div>
-      </div>
       {inView && clicked && (
         <>
           {contactSliderOpen && (
@@ -112,6 +111,6 @@ export const About = () => {
           )}
         </>
       )}
-    </section>
+    </Section>
   );
 };
