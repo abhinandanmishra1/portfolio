@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import { useT } from "../i18n";
 
 export const Contact = ({ showTitle = true }) => {
+  const { t } = useT();
   return (
     <section className="py-16 lg:section w-full overflow-hidden" id="contact">
       <div className="container mx-auto">
@@ -20,10 +22,10 @@ export const Contact = ({ showTitle = true }) => {
             >
               <div>
                 <h4 className="text-xl uppercase text-accent font-medium mb-2 tracking-wide">
-                  Get in touch with me
+                  {t('contact.getInTouch')}
                 </h4>
                 <h2 className="text-[45px] lg:text-[90px] leading-none mb-12">
-                  Let's work <br /> Together{" "}
+                  {t('contact.letsWork')} <br /> {t('contact.together')}
                 </h2>
               </div>
             </motion.div>
@@ -41,19 +43,19 @@ export const Contact = ({ showTitle = true }) => {
             <input
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all"
               type="text"
-              placeholder="Your name"
+              placeholder={t('contact.namePlaceholder')}
             />
             <input
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all"
               type="text"
-              placeholder="Your email"
+              placeholder={t('contact.emailPlaceholder')}
             />
             <textarea
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all resize-none mb-12"
               name=""
-              placeholder="Your message"
+              placeholder={t('contact.messagePlaceholder')}
             ></textarea>
-            <button className="btn btn-lg">Send message</button>
+            <button className="btn btn-lg">{t('contact.sendMessage')}</button>
           </motion.form>
         </div>
       </div>

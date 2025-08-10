@@ -6,8 +6,10 @@ import { fadeIn } from "../variants";
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
+import { useT } from "../i18n";
 
 export const About = () => {
+  const { t } = useT();
   const [ref, inView] = useInView({
     threshold: 0.5,
   });
@@ -56,69 +58,42 @@ export const About = () => {
             }}
             className="flex-1"
           >
-            <h2 className="text-accent h2">About me</h2>
-            <h3 className="mb-4 h3">
-              I'm a software developer proficient in React, CSS, and JavaScript.
-            </h3>
-            <p className="mb-6">
-              Passionate about creating stunning, user-friendly web applications
-              and always eager to learn and grow.
-            </p>
+            <h2 className="text-accent h2">{t('about.title')}</h2>
+            <h3 className="mb-4 h3">{t('about.subtitle')}</h3>
+            <p className="mb-6">{t('about.description')}</p>
             <div className="flex gap-x-6 lg:gap-x-10 mb-12">
-              <div>
-                <div className="font-tertiary text-[40px] text-gradient">
-                  {inView && (
-                    <>
-                      <CountUp start={0} end={2} duration={2} />+
-                    </>
-                  )}
+              {t('about.counters', []).map((counter, idx) => (
+                <div key={idx}>
+                  <div className="font-tertiary text-[40px] text-gradient">
+                    {inView && (
+                      <>
+                        <CountUp start={0} end={counter.count} duration={3} />{counter.suffix}
+                      </>
+                    )}
+                  </div>
+                  <div className="font-primary text-sm tracking-[2px]">
+                    {counter.labelLine1} <br /> {counter.labelLine2}
+                  </div>
                 </div>
-                <div className="font-primary text-sm tracking-[2px]">
-                  Years of <br /> Experience
-                </div>
-              </div>
-              <div>
-                <div className="font-tertiary text-[40px] text-gradient">
-                  {inView && (
-                    <>
-                      <CountUp start={0} end={20} duration={3} />+
-                    </>
-                  )}
-                </div>
-                <div className="font-primary text-sm tracking-[2px]">
-                  Projects <br /> Completed
-                </div>
-              </div>
-              <div>
-                <div className="font-tertiary text-[40px] text-gradient">
-                  {inView && (
-                    <>
-                      <CountUp start={0} end={15} duration={3} />+
-                    </>
-                  )}
-                </div>
-                <div className="font-primary text-sm tracking-[2px]">
-                  Satisfied <br /> Clients
-                </div>
-              </div>
+              ))}
             </div>
             <div className="flex items-center gap-x-8">
               <button
                 className="md:block hidden btn btn-lg"
                 onClick={openContactSlider}
               >
-                Contact Me
+                {t('about.contactCta')}
               </button>
               <button className="md:hidden btn btn-lg" onClick={scrollTo}>
-                Contact Me
+                {t('about.contactCta')}
               </button>
               <a
-                href="https://drive.google.com/file/d/1Gsj-Ww_6gSDKAXeiWW3r6K09JVdwHxnu/view"
+                href={t('links.resume')}
                 target="_blank"
                 rel="noreferrer"
                 className="text-gradient cursor-pointer btn-link"
               >
-                My Resume
+                {t('about.resumeText')}
               </a>
             </div>
           </motion.div>

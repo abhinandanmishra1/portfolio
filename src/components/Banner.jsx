@@ -9,8 +9,10 @@ import image from "../assets/avatar.svg";
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
+import { useT } from "../i18n";
 
 export const Banner = () => {
+  const { t } = useT();
   const [clicked, setClicked] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -53,7 +55,7 @@ export const Banner = () => {
               }}
               className="font-bold text-[55px] lg:text-[110px] leading-[0.8]"
             >
-              Abhinandan <span>Mishra</span>
+              {t('profile.firstName')} <span>{t('profile.lastName')}</span>
             </motion.h1>
             <motion.div
               variants={fadeIn("up", 0.4)}
@@ -65,18 +67,9 @@ export const Banner = () => {
               }}
               className="mb-6 font-secondary font-semibold text-[36px] lg:text-[55px] uppercase leading-[1]"
             >
-              <span className="mr-4 text-white">I am a</span>
+              <span className="mr-4 text-white">{t('banner.iam')}</span>
               <TypeAnimation
-                sequence={[
-                  "Developer",
-                  2000,
-                  "Technical Writer",
-                  2000,
-                  "Freelancer",
-                  2000,
-                  "Blogger",
-                  2000,
-                ]}
+                sequence={t('banner.roles').flatMap((role) => [role, 2000])}
                 speed={50}
                 className="text-accent"
                 wrapper="span"
@@ -93,8 +86,7 @@ export const Banner = () => {
               }}
               className="mx-auto lg:mx-0 mb-8 max-w-lg"
             >
-              I am a Frontend Developer with great interest in JavaScript, React
-              and CSS.
+              {t('banner.subtitle')}
             </motion.p>
             <motion.div
               variants={fadeIn("up", 0.6)}
@@ -110,21 +102,21 @@ export const Banner = () => {
                 className="md:block hidden btn btn-lg"
                 onClick={openContactSlider}
               >
-                Contact Me
+                {t('banner.contactCta')}
               </button>
               <button
                 className="md:hidden btn btn-lg"
                 onClick={scrollTo}
               >
-                Contact Me
+                {t('banner.contactCta')}
               </button>
               <a
-                href="https://drive.google.com/file/d/1Gsj-Ww_6gSDKAXeiWW3r6K09JVdwHxnu/view"
+                href={t('links.resume')}
                 target="_blank"
                 rel="noreferrer"
                 className="text-gradient cursor-pointer btn-link"
               >
-                My Resume
+                {t('banner.resumeText')}
               </a>
             </motion.div>
             <motion.div
@@ -138,21 +130,21 @@ export const Banner = () => {
               className="flex gap-x-6 mx-auto lg:mx-0 max-w-max text-[20px]"
             >
               <a
-                href="https://github.com/abhinandanmishra1"
+                href={t('links.github')}
                 target="_blank"
                 rel="noreferrer"
               >
                 <FaGithub />
               </a>
               <a
-                href="https://www.linkedin.com/in/abhinandanmishra1/"
+                href={t('links.linkedin')}
                 target="_blank"
                 rel="noreferrer"
               >
                 <FaLinkedin />
               </a>
               <a
-                href="https://abhinandanmishra1.hashnode.dev/"
+                href={t('links.blog')}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -171,7 +163,7 @@ export const Banner = () => {
             }}
             className="lg:flex flex-1 hidden max-w-[320px] lg:max-w-[482px]"
           >
-            <img src={image} alt="abhinandan mishra" />
+            <img src={image} alt={t('banner.imageAlt')} />
           </motion.div>
         </div>
       </div>

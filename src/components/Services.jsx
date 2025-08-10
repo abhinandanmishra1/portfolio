@@ -3,29 +3,10 @@ import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
-
-export const services = [
-	{
-		name: "Frontend Developmemnt",
-		description:
-			"Skilled in React, CSS, SCSS, and JavaScript to create visually appealing and interactive user interfaces.",
-		link: "https://github.com/abhinandanmishra1",
-	},
-	{
-		name: "Fullstack Developmemnt",
-		description:
-			"Experienced in MongoDB, Node.js, Express.js, MySQL, Ruby on Rails to develop full-stack web applications.",
-		link: "https://github.com/abhinandanmishra1",
-	},
-	{
-		name: "Technical Writing",
-		description:
-			"Proficient in React and JavaScript, producing clear and concise technical documentation, and writing blog posts and tutorials.",
-		link: "https://abhinandanmishra1.hashnode.dev/",
-	},
-];
+import { useT } from "../i18n";
 
 export const Services = () => {
+    const { t } = useT();
 	return (
 		<section className="section" id="services">
 			<div className="container mx-auto">
@@ -40,13 +21,11 @@ export const Services = () => {
 						}}
 						className="flex-1 lg:bg-services lg:bg-bottom bg-no-repeat mix-blend-lighten mb-12 lg:mb-0"
 					>
-						<h2 className="h2 text-accent"> What I do?</h2>
-						<h3 className="h3 max-w-[455px] mb-16">
-							I'm a skilled full-stack developer with a passion for frontend
-							development and technical writing, available for freelance
-							projects.
-						</h3>
-						<button className="btn btn-sm"> Look at my work</button>
+                        <h2 className="h2 text-accent"> {t('services.title')}</h2>
+                        <h3 className="h3 max-w-[455px] mb-16">
+                            {t('services.intro')}
+                        </h3>
+                        <button className="btn btn-sm"> {t('services.cta')}</button>
 					</motion.div>
 					<motion.div
 						variants={fadeIn("left", 0.3)}
@@ -59,7 +38,7 @@ export const Services = () => {
 						className="flex-1"
 					>
 						<div>
-							{services.map((service, index) => {
+                            {(t('services.items') || []).map((service, index) => {
 								return (
 									<div className="border-b border-white/20 h-[146px] mb-[38px] flex" key={index}>
 										<div className="max-w-[476px]">
@@ -85,7 +64,7 @@ export const Services = () => {
 												rel="noreferrer"
 												className="text-gradient text-sm"
 											>
-												See More
+                                                {t('services.seeMore')}
 											</a>
 										</div>
 									</div>
