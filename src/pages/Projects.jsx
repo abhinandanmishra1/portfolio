@@ -10,7 +10,9 @@ import { BsArrowUpRight, BsGithub } from 'react-icons/bs';
 export const Projects = () => {
   const { t } = useT();
   const navigate = useNavigate();
-  const projects = t('work.projects', []) || [];
+  const projects_original = t('work.projects', []) || [];
+
+  const projects = [...projects_original, ...projects_original];
 
   return (
       <motion.div

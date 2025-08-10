@@ -78,6 +78,81 @@ const en = {
       { title: 'Leetcode IDE Clone', subtitle: 'It is clone of leetcode IDE', link: 'https://leetcode-ide.vercel.app/', github: 'https://github.com/abhinandanmishra1/leetcode-ide', image: 'https://abhicdn.netlify.app/images/leetcode-ide.png' },
     ],
   },
+  works: {
+    titleLine1: 'Works',
+    titleLine2: 'and Writings',
+    description:
+      'A chronological log of my work and technical writings. I like to document the journey — what I built, how I approached it, and the lessons I learned.',
+    categories: [
+      {
+        key: 'frontend',
+        title: 'Frontend Development',
+        subtitle: 'UI engineering, performance, accessibility, and CSS craftsmanship',
+        items: [
+          {
+            year: '2025',
+            date: '2025-08-01',
+            title: 'Building a responsive, accessible navigation bar with Tailwind',
+            excerpt:
+              'A deep dive into crafting an accessible nav with focus states, reduced motion, and semantic structure.',
+            link: '#',
+          },
+          {
+            year: '2024',
+            date: '2024-12-10',
+            title: 'Optimizing React re-renders with memoization and stable props',
+            excerpt:
+              'Practical strategies to reduce needless re-renders in mid-sized React apps using memo, useCallback, and keys.',
+            link: '#',
+          },
+        ],
+      },
+      {
+        key: 'backend',
+        title: 'Backend Development',
+        subtitle: 'APIs, databases, caching, and background jobs',
+        items: [
+          {
+            year: '2025',
+            date: '2025-04-22',
+            title: 'Designing idempotent REST APIs',
+            excerpt: 'Patterns for safely handling retries and ensuring consistency across distributed systems.',
+            link: '#',
+          },
+        ],
+      },
+      {
+        key: 'fullstack',
+        title: 'Fullstack',
+        subtitle: 'End-to-end product work: from idea to deployment',
+        items: [
+          {
+            year: '2024',
+            date: '2024-11-05',
+            title: 'Shipping a feature with feature flags and A/B testing',
+            excerpt:
+              'How I used feature flags to de-risk release and measure impact with an A/B test in production.',
+            link: '#',
+          },
+        ],
+      },
+      {
+        key: 'writing',
+        title: 'Technical Writing',
+        subtitle: 'Tutorials, deep dives, and docs I authored',
+        items: [
+          {
+            year: '2025',
+            date: '2025-01-18',
+            title: 'A practical guide to Framer Motion in React',
+            excerpt:
+              'Exploring variants, staggering, and scroll-triggered animations to add motion tastefully.',
+            link: '#',
+          },
+        ],
+      },
+    ],
+  },
   contact: {
     getInTouch: 'Get in touch with me',
     letsWork: "Let's work",
