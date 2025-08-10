@@ -1,15 +1,14 @@
 import React from "react";
 
-import { BiHome, BiHomeAlt, BiUser } from "react-icons/bi";
+import { BiHomeAlt, BiUser } from "react-icons/bi";
 import {
   BsClipboardData,
   BsBriefcase,
-  BsChatSquare,
   BsChatSquareText,
 } from "react-icons/bs";
 import { Link } from "react-scroll";
 
-const Nav = () => {
+export const Nav = () => {
   return (
     <nav className="fixed bottom-2 lg:bottom-8 w-full overflow-hidden z-50">
       <div className="container mx-auto">
@@ -67,5 +66,3 @@ const Nav = () => {
     </nav>
   );
 };
-
-export default Nav;

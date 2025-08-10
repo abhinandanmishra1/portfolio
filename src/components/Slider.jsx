@@ -1,10 +1,9 @@
-import { useState } from "react";
 import classNames from "classnames";
 
 import { motion } from "framer-motion";
 import { fadeIn, fadeOut } from "../variants";
 
-const Slider = ({ isOpen = false, onClose, children, direction = "left"}) => {
+export const Slider = ({ isOpen = false, onClose, children, direction = "left"}) => {
     const oppositeDirection = direction === "left" ? "right" : "left";
     const sliderClasses = classNames(
         "fixed inset-y-0 z-50 overflow-auto shadow-lg md:w-full lg:w-[750px] slider",
@@ -56,5 +55,3 @@ const Slider = ({ isOpen = false, onClose, children, direction = "left"}) => {
         </>
     );
 };
-
-export default Slider;

@@ -2,10 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
-const Contact = ({ showTitle = true }) => {
+export const Contact = ({ showTitle = true }) => {
   return (
     <section className="py-16 lg:section w-full overflow-hidden" id="contact">
-      <div class="container mx-auto">
+      <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row">
           {showTitle && (
             <motion.div
@@ -60,5 +60,3 @@ const Contact = ({ showTitle = true }) => {
     </section>
   );
 };
-
-export default Contact;

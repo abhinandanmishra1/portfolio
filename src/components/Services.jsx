@@ -4,7 +4,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
-const services = [
+export const services = [
 	{
 		name: "Frontend Developmemnt",
 		description:
@@ -25,7 +25,7 @@ const services = [
 	},
 ];
 
-const Services = () => {
+export const Services = () => {
 	return (
 		<section className="section" id="services">
 			<div className="container mx-auto">
@@ -61,7 +61,7 @@ const Services = () => {
 						<div>
 							{services.map((service, index) => {
 								return (
-									<div className="border-b border-white/20 h-[146px] mb-[38px] flex">
+									<div className="border-b border-white/20 h-[146px] mb-[38px] flex" key={index}>
 										<div className="max-w-[476px]">
 											<h4 className="text-[20px] tracking-wider font-primary font-semibold mb-6">
 												{service.name}
@@ -98,5 +98,3 @@ const Services = () => {
 		</section>
 	);
 };
-
-export default Services;

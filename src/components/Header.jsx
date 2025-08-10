@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+export const Header = () => {
   const openLinkedin = () => {
     window.open('https://www.linkedin.com/in/abhinandanmishra1/', '_blank');
   }
@@ -17,5 +17,3 @@ const Header = () => {
     </div>
   </header>
 };
-
-export default Header;

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
-import Contact from "./Contact";
+import { Contact, Slider} from ".";
 import CountUp from "react-countup";
-import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume.pdf";
-import Slider from "./Slider";
 import { fadeIn } from "../variants";
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
 
-const About = () => {
+export const About = () => {
   const [ref, inView] = useInView({
     threshold: 0.5,
   });
@@ -115,7 +113,9 @@ const About = () => {
                 Contact Me
               </button>
               <a
-                href=""
+                href="https://drive.google.com/file/d/1Gsj-Ww_6gSDKAXeiWW3r6K09JVdwHxnu/view"
+                target="_blank"
+                rel="noreferrer"
                 className="text-gradient cursor-pointer btn-link"
               >
                 My Resume
@@ -140,5 +140,3 @@ const About = () => {
     </section>
   );
 };
-
-export default About;

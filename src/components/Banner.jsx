@@ -1,10 +1,8 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import React, { useState } from "react";
 
-import Contact from "./Contact";
-import ResumePdf from "../assets/resume/Abhinandan_Mishra_Resume.pdf";
+import { Contact, Slider } from ".";
 import { SiHashnode } from "react-icons/si";
-import Slider from "./Slider";
 import { TypeAnimation } from "react-type-animation";
 import { fadeIn } from "../variants";
 import image from "../assets/avatar.svg";
@@ -12,7 +10,7 @@ import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { useInView } from "react-intersection-observer";
 
-const Banner = () => {
+export const Banner = () => {
   const [clicked, setClicked] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -121,7 +119,9 @@ const Banner = () => {
                 Contact Me
               </button>
               <a
-                href=""
+                href="https://drive.google.com/file/d/1Gsj-Ww_6gSDKAXeiWW3r6K09JVdwHxnu/view"
+                target="_blank"
+                rel="noreferrer"
                 className="text-gradient cursor-pointer btn-link"
               >
                 My Resume
@@ -191,5 +191,3 @@ const Banner = () => {
     </section>
   );
 };
-
-export default Banner;
