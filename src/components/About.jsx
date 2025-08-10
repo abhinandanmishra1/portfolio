@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Contact, Slider} from ".";
 import CountUp from "react-countup";
 import { fadeIn } from "../variants";
 import { motion } from "framer-motion";
@@ -15,24 +14,11 @@ export const About = () => {
     threshold: 0.5,
   });
 
-  const [clicked, setClicked] = useState(false);
-
-  const [contactSliderOpen, setContactSliderOpen] = useState(false);
-
   const scrollTo = () => {
     scroller.scrollTo("contact", {
       smooth: true,
       spy: true,
     });
-  };
-
-  const openContactSlider = () => {
-    setClicked(true);
-    setContactSliderOpen(true);
-  };
-
-  const onCloseContactSlider = () => {
-    setContactSliderOpen(false);
   };
 
   return (
@@ -78,13 +64,7 @@ export const About = () => {
               ))}
             </div>
             <div className="flex items-center gap-x-8">
-              <button
-                className="md:block hidden btn btn-lg"
-                onClick={openContactSlider}
-              >
-                {t('about.contactCta')}
-              </button>
-              <button className="md:hidden btn btn-lg" onClick={scrollTo}>
+              <button className="btn btn-lg" onClick={scrollTo}>
                 {t('about.contactCta')}
               </button>
               <a
@@ -98,19 +78,6 @@ export const About = () => {
             </div>
           </motion.div>
         </div>
-      {inView && clicked && (
-        <>
-          {contactSliderOpen && (
-            <Slider
-              isOpen={contactSliderOpen}
-              onClose={onCloseContactSlider}
-              direction="left"
-            >
-              <Contact showTitle={false} />
-            </Slider>
-          )}
-        </>
-      )}
     </Section>
   );
 };

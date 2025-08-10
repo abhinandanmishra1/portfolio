@@ -1,7 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import React, { useState } from "react";
+import React from "react";
 
-import { Contact, Slider } from ".";
 import { SiHashnode } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import { fadeIn } from "../variants";
@@ -13,21 +12,9 @@ import { Button, ExternalLink, IconLink, Section } from "./common";
 
 export const Banner = () => {
   const { t } = useT();
-  const [clicked, setClicked] = useState(false);
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     threshold: 0.5,
   });
-
-  const [contactSliderOpen, setContactSliderOpen] = useState(false);
-
-  const openContactSlider = () => {
-    setClicked(true);
-    setContactSliderOpen(true);
-  };
-
-  const onCloseContactSlider = () => {
-    setContactSliderOpen(false);
-  };
 
   const scrollTo = () => {
     scroller.scrollTo('contact', {
@@ -93,10 +80,7 @@ export const Banner = () => {
               }}
               className="flex items-center gap-x-6 mx-auto lg:mx-0 mb-12 max-w-max"
             >
-              <Button className="md:block hidden" size="lg" onClick={openContactSlider}>
-                {t('banner.contactCta')}
-              </Button>
-              <Button className="md:hidden" size="lg" onClick={scrollTo}>
+              <Button size="lg" onClick={scrollTo}>
                 {t('banner.contactCta')}
               </Button>
               <ExternalLink href={t('links.resume')} className="text-gradient cursor-pointer btn-link">
@@ -138,19 +122,6 @@ export const Banner = () => {
             <img src={t('banner.image')} alt={t('banner.imageAlt')} />
           </motion.div>
         </div>
-      {inView && clicked && (
-        <>
-          {contactSliderOpen && (
-            <Slider
-              isOpen={contactSliderOpen}
-              onClose={onCloseContactSlider}
-              direction="right"
-            >
-              <Contact showTitle={false} />
-            </Slider>
-          )}
-        </>
-      )}
     </Section>
   );
 };

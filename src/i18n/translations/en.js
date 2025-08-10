@@ -70,6 +70,7 @@ const en = {
     titleLine2: 'Projects',
     intro:
       'These are some major project that I have been working on recently.',
+    description: 'Explore my complete collection of web applications, tools, and open-source contributions showcasing modern development practices.',
     cta: 'View all projects',
     projects: [
       { title: 'Portfolio Website', subtitle: 'Personal portfolio website', link: '/', github: 'https://github.com/abhinandanmishra1/portfolio', image: 'https://abhicdn.netlify.app/images/portfolio.png' },
