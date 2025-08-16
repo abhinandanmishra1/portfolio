@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { useT } from "../i18n";
 import { Button, ExternalLink, Section } from "./common";
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 export const Work = () => {
   const { t } = useT();
-  const navigate = useNavigate();
+  const router = useRouter();
   const projects = t('work.projects', []) || [];
 
   const firstProject = projects[0];
@@ -28,7 +28,7 @@ export const Work = () => {
                 {t('work.titleLine1')} <br /> {t('work.titleLine2')}
               </h2>
               <p className="max-w-sm mb-16 ">{t('work.intro')}</p>
-              <Button size="sm" onClick={() => navigate('/projects')}>{t('work.cta')}</Button>
+              <Button size="sm" onClick={() => router.push('/projects')}>{t('work.cta')}</Button>
             </div>
 
             {firstProject && (

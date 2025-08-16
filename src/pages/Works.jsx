@@ -2,13 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useT } from '../i18n';
 import { ExternalLink, Button } from '../components/common';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { fadeIn } from '../variants';
 import { BsArrowUpRight } from 'react-icons/bs';
 
 export const Works = () => {
   const { t } = useT();
-  const navigate = useNavigate();
+  const router = useRouter();
   const categories = t('works.categories', []) || [];
 
   return (
@@ -100,7 +100,7 @@ export const Works = () => {
         <h3 className="text-2xl lg:text-3xl font-primary text-white mb-6">
           Want to connect to understand about something?
         </h3>
-        <Button size="lg" onClick={() => navigate('/#contact')} className="font-medium">
+        <Button size="lg" onClick={() => router.push('/#contact')} className="font-medium">
           {t('banner.contactCta')}
         </Button>
       </motion.div>

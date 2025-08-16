@@ -21,3 +21,13 @@ Abhinandan Mishra is a software engineer, current working as a Specialist Progra
 Redeploy
 
 Continue...
+
+----
+
+This project now runs on Next.js (App Router).
+
+Commands:
+
+- dev: `npm run dev`
+- build: `npm run build`
+- start: `npm run start`

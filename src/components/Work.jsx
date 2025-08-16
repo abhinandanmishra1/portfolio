@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { useT } from "../i18n";
 import { Button, ExternalLink, Section } from "./common";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/navigation';
 
 export const Services = () => {
-	const { t } = useT();
-	const navigate = useNavigate();
+    const { t } = useT();
+    const router = useRouter();
 	return (
 		<Section id="services">
 			<div className="flex flex-col lg:flex-row">
@@ -27,7 +27,7 @@ export const Services = () => {
 					<h3 className="h3 max-w-[455px] mb-16">
 						{t('services.intro')}
 					</h3>
-					<Button size="sm" onClick={() => navigate('/works')}> {t('services.cta')}</Button>
+                    <Button size="sm" onClick={() => router.push('/works')}> {t('services.cta')}</Button>
 				</motion.div>
 				<motion.div
 					variants={fadeIn("left", 0.3)}

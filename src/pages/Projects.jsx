@@ -2,14 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useT } from '../i18n';
 import { ExternalLink, Button, IconLink } from '../components/common';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { fadeIn } from '../variants';
 import { BsArrowUpRight, BsGithub } from 'react-icons/bs';
  
 
 export const Projects = () => {
   const { t } = useT();
-  const navigate = useNavigate();
+  const router = useRouter();
   const projects_original = t('work.projects', []) || [];
 
   const projects = [...projects_original, ...projects_original];
@@ -100,7 +100,7 @@ export const Projects = () => {
           </h3>
           <Button 
             size="lg" 
-            onClick={() => navigate('/#contact')}
+            onClick={() => router.push('/#contact')}
             className="font-medium"
           >
             {t('banner.contactCta')}

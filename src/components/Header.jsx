@@ -1,18 +1,18 @@
 import React from 'react';
 import { useT } from '../i18n';
 import { Button } from './common';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { BiArrowBack } from 'react-icons/bi';
 
 export const Header = () => {
   const { t } = useT();
-  const navigate = useNavigate()
+  const router = useRouter();
   const openLinkedin = () => {
     window.open(t('links.linkedin'), '_blank');
   }
 
-  const location = useLocation();
-  if (location.pathname !== '/') {
+  const pathname = usePathname();
+  if (pathname !== '/') {
     return <header className='py-8'>
 
       <div className="container mx-auto">
@@ -21,7 +21,7 @@ export const Header = () => {
         >
           <Button
             size="sm"
-            onClick={() => navigate('/')}
+            onClick={() => router.push('/')}
             className="flex items-center gap-2"
           >
             <BiArrowBack /> Back to Home

@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react';
 import { Banner, Nav, About, Services, Work, Contact } from '../components';
-import { useLocation } from 'react-router-dom';
 import { scroller } from 'react-scroll';
 
 export const Home = () => {
-  const location = useLocation();
-
   useEffect(() => {
-    if (location.hash) {
-      const target = location.hash.replace('#', '');
-      // Wait a tick to ensure sections are mounted
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const target = window.location.hash.replace('#', '');
       setTimeout(() => {
         scroller.scrollTo(target, {
           smooth: true,
@@ -18,7 +14,7 @@ export const Home = () => {
         });
       }, 0);
     }
-  }, [location]);
+  }, []);
 
   return (
     <>
