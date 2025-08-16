@@ -60,7 +60,7 @@ export const Work = () => {
               return (
                 <ExternalLink
                   key={`${project.title}-${index}`}
-                  href={project.link || '#'}
+                  href={typeof project.link === 'string' ? project.link : '#'}
                   className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer"
                 >
                   <div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>

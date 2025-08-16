@@ -1,11 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
 
 export const IconLink = ({ href, children, className = '', ...props }) => {
+  const safeHref = typeof href === 'string' ? href : '#';
   return (
-    <Link href={href || '#'} target="_blank" rel="noreferrer" className={className} {...props}>
+    <a href={safeHref} target="_blank" rel="noreferrer" className={className} {...props}>
       {children}
-    </Link>
+    </a>
   );
 };
 

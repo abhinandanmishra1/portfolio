@@ -68,7 +68,7 @@ export const Projects = () => {
 
                 <div className="flex items-center justify-between">
                   <ExternalLink
-                    href={project.link || '#'}
+                    href={typeof project.link === 'string' ? project.link : '#'}
                     className="inline-flex items-center gap-2 text-accent hover:text-white text-sm font-medium transition-colors duration-300"
                   >
                     View Project <BsArrowUpRight />
@@ -76,7 +76,7 @@ export const Projects = () => {
                   
                   {project.github && (
                     <IconLink
-                      href={project.github}
+                      href={typeof project.github === 'string' ? project.github : '#'}
                       className="text-white/60 hover:text-accent text-lg transition-colors duration-300"
                     >
                       <BsGithub />
