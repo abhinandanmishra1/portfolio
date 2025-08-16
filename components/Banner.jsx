@@ -51,7 +51,7 @@ export const Banner = () => {
             >
               <span className="mr-4 text-white">{t('banner.iam')}</span>
               <TypeAnimation
-                sequence={t('banner.roles').flatMap((role) => [role, 2000])}
+                sequence={(t('banner.roles', []) || []).reduce((acc, role) => acc.concat([role, 2000]), [])}
                 speed={50}
                 className="text-accent"
                 wrapper="span"

@@ -1,6 +1,6 @@
 'use client';
 
-import Works from '../../src/pages/Works';
+import Works from '../../views/Works';
 
 export default function WorksPage() {
   return <Works />;

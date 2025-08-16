@@ -5,7 +5,6 @@ import { ExternalLink, Button, IconLink } from '../components/common';
 import { useRouter } from 'next/navigation';
 import { fadeIn } from '../variants';
 import { BsArrowUpRight, BsGithub } from 'react-icons/bs';
- 
 
 export const Projects = () => {
   const { t } = useT();
@@ -111,5 +110,3 @@ export const Projects = () => {
 };
 
 export default Projects;
-
-

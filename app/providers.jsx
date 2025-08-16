@@ -1,7 +1,7 @@
 'use client';
 
-import { TranslationsProvider } from '../src/i18n';
-import Header from '../src/components/Header';
+import { TranslationsProvider } from '../i18n';
+import { Header } from '../components/Header';
 
 export default function Providers({ children }) {
   return (

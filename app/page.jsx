@@ -1,7 +1,7 @@
 'use client';
 
-import Home from '../src/pages/Home';
-import Nav from '../src/components/Nav';
+import Home from '../views/Home';
+import { Nav } from '../components/Nav';
 
 export default function Page() {
   return (
