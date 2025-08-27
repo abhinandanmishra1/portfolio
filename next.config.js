@@ -13,11 +13,11 @@ const nextConfig = {
     return [
       {
         source: "/blog",
-        destination: "https://abhinandanmishra1-blog.vercel.app/blog",
+        destination: "https://blog.abhinandanmishra.in",
       },
       {
         source: "/blog/:path*",
-        destination: "https://abhinandanmishra1-blog.vercel.app/blog/:path*",
+        destination: "https://blog.abhinandanmishra.in/:path*",
       },
     ];
   },
