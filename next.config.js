@@ -4,10 +4,22 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'abhicdn.netlify.app',
+        protocol: "https",
+        hostname: "abhicdn.netlify.app",
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/blog",
+        destination: "https://abhinandanmishra1-blog.vercel.app/blog",
+      },
+      {
+        source: "/blog/:path*",
+        destination: "https://abhinandanmishra1-blog.vercel.app/blog/:path*",
+      },
+    ];
   },
 };
 
