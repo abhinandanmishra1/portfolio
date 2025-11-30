@@ -19,6 +19,10 @@ const nextConfig = {
         source: "/blog/:path*",
         destination: "https://blog.abhinandanmishra.in/:path*",
       },
+      {
+        source: "/_next/:path*",
+        destination: "https://blog.abhinandanmishra.in/_next/:path*",
+      },
     ];
   },
 };
