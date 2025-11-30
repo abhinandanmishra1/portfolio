@@ -19,10 +19,6 @@ const nextConfig = {
         source: "/blog/:path*",
         destination: process.env.NEXT_PUBLIC_BLOG_URL + "/:path*",
       },
-      {
-        source: "/_next/:path*",
-        destination: process.env.NEXT_PUBLIC_BLOG_URL + "/_next/:path*",
-      },
     ];
   },
 };
