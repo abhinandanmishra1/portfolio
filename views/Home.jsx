@@ -1,8 +1,10 @@
+"use client";
 import React, { useEffect } from 'react';
 import { Banner, Nav, About, Services, Work, Contact } from '../components';
 import { scroller } from 'react-scroll';
+import Spotify from '../components/Spotify';
 
-export const Home = () => {
+export const Home = ({ profile, experiences, projects }) => {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
       const target = window.location.hash.replace('#', '');
@@ -18,12 +20,13 @@ export const Home = () => {
 
   return (
     <>
-      <Banner />
+      <Banner profile={profile} />
       <Nav />
-      <About />
+      <About profile={profile} />
       <Services />
-      <Work />
+      <Work projects={projects} />
       <Contact />
+      {/* <Spotify track={{ title: "Mock Song", artist: "Mock Artist" }} /> */}
     </>
   );
 };

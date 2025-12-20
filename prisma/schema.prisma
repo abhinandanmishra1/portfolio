@@ -3,15 +3,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Project {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  content     String?  @db.Text // Markdown content
+  content     String? // Markdown content
   image       String?
   tags        String[]
   link        String?
@@ -22,20 +22,35 @@ model Project {
 }
 
 model Experience {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   role        String
   company     String
   location    String?
   startDate   DateTime
   endDate     DateTime? // Null means "Present"
-  description String   @db.Text
+  description String
   skills      String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
+model Profile {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  name               String
+  headline           String?
+  bio                String?
+  image              String?
+  resume             String?
+  email              String?
+  linkedin           String?
+  github             String?
+  twitter            String?
+  currentlyWorkingOn String?
+  updatedAt          DateTime @updatedAt
+}
+
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   clerkId   String   @unique
   email     String   @unique
   role      String   @default("USER") // ADMIN, USER
