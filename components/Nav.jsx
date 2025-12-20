@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { BiHomeAlt, BiUser } from "react-icons/bi";
