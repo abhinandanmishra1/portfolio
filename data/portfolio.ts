@@ -104,7 +104,7 @@ export const portfolio = {
   email: 'abhinandanmishra360@gmail.com',
   blogUrl: '/articles',
   location: 'Bengaluru, India',
-  availableFor: 'Systems · Developer Tools · System Design Education',
+  availableFor: 'Systems · Research · Always Building',
 } as const;
 
 export const navLinks: NavLink[] = [
@@ -117,18 +117,18 @@ export const navLinks: NavLink[] = [
 export const heroBio: BioSegment[][] = [
   [
     'I am an engineer passionate about distributed systems, low-latency execution engines, and developer productivity tooling. Currently, I am an SDE-II at ',
-    { text: 'Project44', href: 'https://project44.com', external: true },
-    ', optimizing core logistics APIs serving 10M+ daily tracking updates and architecting internal developer tooling.',
+    { text: 'Project44', href: 'https://project44.com/', external: true },
+    ', building a Decision Intelligence platform that orchestrates AI agents to detect, decide, and act in real time, while also architecting internal developer tooling that helps engineers build and ship software faster and more efficiently.',
   ],
   [
     'On the side, I am a co-founder of ',
-    { text: 'SDE Forge', href: 'https://sdeforge.com', external: true },
+    { text: 'SDE Forge', href: 'https://sdeforge.com/', external: true },
     ' (an interactive system design simulator and mock interviewer) and creator of ',
-    { text: 'CodePad', href: 'https://codepad.abhinandanmishra.in', external: true },
+    { text: 'CodePad', href: 'https://codepad.abhinandanmishra.in/', external: true },
     ' (a sandboxed multi-language browser IDE powered by BullMQ & Docker).',
   ],
   [
-    'I have a strong background in competitive programming (Google Kickstart #311, Codechef #60, ICPC #93, LeetCode 2026 Knight) and frequently write technical deep dives on database isolation, caching topologies, and system architecture.',
+    'I enjoy solving problems and bridging the gap between complex challenges and effective solutions.',
   ],
 ];
 
