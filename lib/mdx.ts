@@ -35,6 +35,7 @@ export interface Article {
   date: string; // Formatted date e.g. "Oct 2025"
   readTimeInMinutes: number;
   category?: string;
+  categorySlug?: string;
   tags: ArticleTag[];
   series?: ArticleSeries;
   coverImage?: {
@@ -111,6 +112,7 @@ export function getArticleBySlug(slug: string): Article | null {
       date: dateFormatted,
       readTimeInMinutes: data.readTimeInMinutes || Math.max(1, Math.round(content.split(/\s+/).length / 200)),
       category: data.category || '',
+      categorySlug: data.category ? categoryToSlug(data.category) : '',
       tags,
       series: data.series,
       coverImage: data.coverImage,
@@ -126,19 +128,86 @@ export function getArticleBySlug(slug: string): Article | null {
   }
 }
 
-export function getAllCategories(): { name: string; count: number }[] {
+export interface CategoryInfo {
+  name: string;
+  slug: string;
+  count: number;
+}
+
+export function categoryToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/&/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function getAllCategories(): CategoryInfo[] {
   const articles = getAllArticles();
-  const map = new Map<string, number>();
+  const map = new Map<string, { name: string; count: number }>();
 
   for (const article of articles) {
     if (article.category) {
-      map.set(article.category, (map.get(article.category) || 0) + 1);
+      const existing = map.get(article.category);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        map.set(article.category, { name: article.category, count: 1 });
+      }
     }
   }
 
-  return Array.from(map.entries())
-    .map(([name, count]) => ({ name, count }))
+  return Array.from(map.values())
+    .map((c) => ({
+      name: c.name,
+      slug: categoryToSlug(c.name),
+      count: c.count,
+    }))
     .sort((a, b) => b.count - a.count);
+}
+
+export function getCategoryBySlug(slug: string): CategoryInfo | null {
+  const categories = getAllCategories();
+  const cleanSearch = slug
+    .toLowerCase()
+    .replace(/&/g, '')
+    .replace(/and/g, '')
+    .replace(/[^a-z0-9]+/g, '');
+
+  return (
+    categories.find((c) => {
+      const cleanCat = c.name
+        .toLowerCase()
+        .replace(/&/g, '')
+        .replace(/and/g, '')
+        .replace(/[^a-z0-9]+/g, '');
+      return cleanCat === cleanSearch;
+    }) || null
+  );
+}
+
+export function getArticlesByCategory(categorySlugOrName: string): Article[] {
+  const cleanSearch = categorySlugOrName
+    .toLowerCase()
+    .replace(/&/g, '')
+    .replace(/and/g, '')
+    .replace(/[^a-z0-9]+/g, '');
+
+  const articles = getAllArticles();
+  const filtered = articles.filter((a) => {
+    if (!a.category) return false;
+    const cleanCat = a.category
+      .toLowerCase()
+      .replace(/&/g, '')
+      .replace(/and/g, '')
+      .replace(/[^a-z0-9]+/g, '');
+    return cleanCat === cleanSearch;
+  });
+
+  // Sort in ASCENDING order of written date (oldest first: progressive curriculum)
+  return filtered.sort(
+    (a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime(),
+  );
 }
 
 export function getAllArticles(): Article[] {

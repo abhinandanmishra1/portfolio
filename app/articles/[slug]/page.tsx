@@ -109,9 +109,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {article.category && (
               <>
                 <span>·</span>
-                <span className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400">
+                <Link
+                  href={`/categories/${article.categorySlug}`}
+                  className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400 transition-colors hover:border-blue-500/40 hover:bg-blue-500/20"
+                >
                   {article.category}
-                </span>
+                </Link>
               </>
             )}
             {article.series && (
@@ -137,12 +140,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           {article.tags.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-1.5">
               {article.tags.map((tag) => (
-                <span
+                <Link
                   key={tag.slug}
-                  className="rounded-md border border-border/70 bg-card/60 px-2.5 py-1 font-mono text-xs text-muted-foreground"
+                  href={`/tags/${tag.slug}`}
+                  className="rounded-md border border-border/70 bg-card/60 px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-blue-500/40"
                 >
                   #{tag.name}
-                </span>
+                </Link>
               ))}
             </div>
           )}

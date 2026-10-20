@@ -1,10 +1,12 @@
 import type { MetadataRoute } from 'next';
-import { getAllArticles, getAllResearch } from '@/lib/mdx';
+import { getAllArticles, getAllCategories, getAllResearch, getAllTags } from '@/lib/mdx';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://abhinandanmishra.in';
   const articles = getAllArticles();
   const researchPapers = getAllResearch();
+  const categories = getAllCategories();
+  const tags = getAllTags();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -26,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/categories`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/research`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -38,6 +46,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ];
+
+  const categoryRoutes: MetadataRoute.Sitemap = categories.map((cat) => ({
+    url: `${baseUrl}/categories/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
+  const tagRoutes: MetadataRoute.Sitemap = tags.map((tag) => ({
+    url: `${baseUrl}/tags/${tag.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }));
 
   const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
@@ -53,5 +75,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...researchRoutes];
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...tagRoutes,
+    ...articleRoutes,
+    ...researchRoutes,
+  ];
 }

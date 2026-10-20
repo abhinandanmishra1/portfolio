@@ -41,14 +41,21 @@ export default function ArticlesPage() {
 
           {categories.length > 0 && (
             <div className="mt-6 flex flex-wrap gap-2">
+              <Link
+                href="/categories"
+                className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 font-mono text-xs font-medium text-blue-600 dark:text-blue-400 transition-colors hover:bg-blue-500/20"
+              >
+                All Tracks ({categories.reduce((a, c) => a + c.count, 0)})
+              </Link>
               {categories.map((cat) => (
-                <span
-                  key={cat.name}
+                <Link
+                  key={cat.slug}
+                  href={`/categories/${cat.slug}`}
                   className="rounded-full border border-border/80 bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-blue-500/40"
                 >
                   {cat.name}{' '}
                   <span className="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">({cat.count})</span>
-                </span>
+                </Link>
               ))}
             </div>
           )}
@@ -68,9 +75,12 @@ export default function ArticlesPage() {
                   {article.category && (
                     <>
                       <span>·</span>
-                      <span className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400">
+                      <Link
+                        href={`/categories/${article.categorySlug}`}
+                        className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400 transition-colors hover:border-blue-500/40 hover:bg-blue-500/20"
+                      >
                         {article.category}
-                      </span>
+                      </Link>
                     </>
                   )}
                   {article.series && (
@@ -98,12 +108,13 @@ export default function ArticlesPage() {
                 {article.tags.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {article.tags.map((tag) => (
-                      <span
+                      <Link
                         key={tag.slug}
-                        className="rounded-md border border-border/60 bg-muted/20 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                        href={`/tags/${tag.slug}`}
+                        className="rounded-md border border-border/60 bg-muted/20 px-2 py-0.5 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground hover:border-blue-500/30"
                       >
-                        {tag.name}
-                      </span>
+                        #{tag.name}
+                      </Link>
                     ))}
                   </div>
                 )}
