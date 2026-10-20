@@ -26,6 +26,15 @@ export function Papershelf() {
           </li>
         ))}
       </ul>
+      <div className="mt-4">
+        <a
+          href="/research"
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-foreground/80 transition-all hover:gap-2 hover:text-foreground"
+        >
+          View Full Papershelf
+          <span className="font-mono text-xs text-muted-foreground">→</span>
+        </a>
+      </div>
     </section>
   );
 }

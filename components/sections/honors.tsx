@@ -25,6 +25,15 @@ export function Honors() {
           </div>
         ))}
       </div>
+      <div className="mt-4">
+        <a
+          href="/honors"
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-foreground/80 transition-all hover:gap-2 hover:text-foreground"
+        >
+          View All CP Honors & Ratings
+          <span className="font-mono text-xs text-muted-foreground">→</span>
+        </a>
+      </div>
     </section>
   );
 }

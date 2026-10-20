@@ -1,0 +1,109 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowLeft, BookOpen, Clock } from 'lucide-react';
+import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/sections/footer';
+import { getAllArticles, getAllTags } from '@/lib/mdx';
+
+export const metadata: Metadata = {
+  title: 'Articles & System Deep Dives',
+  description:
+    'In-depth technical essays on distributed databases, isolation levels, caching strategies, and algorithms by Abhinandan Mishra.',
+};
+
+export default function ArticlesPage() {
+  const articles = getAllArticles();
+  const tags = getAllTags();
+
+  return (
+    <>
+      <Navbar />
+      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+        <div className="mb-10">
+          <Link
+            href="/"
+            className="group mb-6 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <span>back to overview</span>
+          </Link>
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            <BookOpen className="h-3.5 w-3.5" />
+            <span>Technical Archive</span>
+          </div>
+          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+            Essays & System Design Deep Dives
+          </h1>
+          <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
+            Practical, in-depth breakdowns of database internals, concurrency anomalies, cache architectures, and high-performance algorithms.
+          </p>
+
+          {tags.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-1.5">
+              {tags.map((tag) => (
+                <span
+                  key={tag.slug}
+                  className="rounded-full border border-border/80 bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+                >
+                  #{tag.name}{' '}
+                  <span className="text-[10px] opacity-60">({tag.count})</span>
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="divide-y divide-border border-t border-border">
+          {articles.map((article) => (
+            <article key={article.slug} className="group py-8 transition-colors">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
+                  <time dateTime={article.publishedAt}>{article.date}</time>
+                  <span>·</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {article.readTimeInMinutes} min read
+                  </span>
+                  {article.series && (
+                    <>
+                      <span>·</span>
+                      <span className="text-blue-600 dark:text-blue-400">
+                        {article.series.name}
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                <h2 className="font-serif text-xl italic font-medium leading-snug text-foreground transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400 sm:text-2xl">
+                  <Link href={`/articles/${article.slug}`}>
+                    {article.title}
+                  </Link>
+                </h2>
+
+                {article.brief && (
+                  <p className="text-[14.5px] leading-relaxed text-muted-foreground line-clamp-2">
+                    {article.brief}
+                  </p>
+                )}
+
+                {article.tags.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {article.tags.map((tag) => (
+                      <span
+                        key={tag.slug}
+                        className="rounded-md border border-border/60 bg-muted/20 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                      >
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
