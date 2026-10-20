@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowRight, Clock, Calendar, Share2 } from 'lucide-react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/sections/footer';
 import { MdxRenderer } from '@/components/mdx/mdx-renderer';
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/icons';
 import { getAllSlugs, getArticleBySlug, getAdjacentArticles } from '@/lib/mdx';
 
 interface ArticlePageProps {
@@ -225,68 +224,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <article className="prose-content">
           <MdxRenderer source={article.content} />
         </article>
-
-        {/* Author Bio & E-E-A-T Provenance Card */}
-        <section
-          aria-label="Author information"
-          className="mt-14 rounded-2xl border border-border/80 bg-card/40 p-6 sm:p-7"
-        >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-border">
-              <Image
-                src="https://github.com/abhinandanmishra1.png"
-                alt="Abhinandan Mishra"
-                fill
-                sizes="56px"
-                className="object-cover"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <h3 className="font-serif text-lg italic font-medium text-foreground">
-                    Abhinandan Mishra
-                  </h3>
-                  <p className="font-mono text-xs text-muted-foreground">
-                    SDE-II @ Project44 · Co-Founder @ SDE Forge
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <a
-                    href="https://github.com/abhinandanmishra1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub Profile"
-                    className="rounded-full border border-border p-1.5 text-muted-foreground hover:border-foreground/40 hover:text-foreground transition-colors"
-                  >
-                    <GitHubIcon className="h-3.5 w-3.5" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/abhinandanmishra1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn Profile"
-                    className="rounded-full border border-border p-1.5 text-muted-foreground hover:border-foreground/40 hover:text-foreground transition-colors"
-                  >
-                    <LinkedInIcon className="h-3.5 w-3.5" />
-                  </a>
-                  <a
-                    href="https://x.com/abhinandan_0001"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="X Profile"
-                    className="rounded-full border border-border p-1.5 text-muted-foreground hover:border-foreground/40 hover:text-foreground transition-colors"
-                  >
-                    <XIcon className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-              <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted-foreground">
-                Engineer passionate about distributed systems, low-latency execution engines, and developer productivity tooling. Writes deep dives on database internals, isolation levels, caching topologies, and scalable software architecture.
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* Adjacent Articles Navigation (Created Date Order) */}
         {(prevArticle || nextArticle) && (
