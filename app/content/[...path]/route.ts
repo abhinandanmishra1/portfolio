@@ -17,15 +17,21 @@ export async function GET(
   { params }: { params: Promise<{ path: string[] }> },
 ) {
   const { path: pathSegments } = await params;
-  const contentDir = path.join(process.cwd(), 'content');
-  const resolved = path.resolve(path.join(contentDir, ...pathSegments));
+  const candidates = [
+    path.resolve(path.join(process.cwd(), 'public', 'content', ...pathSegments)),
+    path.resolve(path.join(process.cwd(), 'content', ...pathSegments)),
+    path.resolve(path.join(process.cwd(), '..', 'content', ...pathSegments)),
+  ];
 
-  // Security check: ensure path is within content directory
-  if (!resolved.startsWith(contentDir)) {
-    return new NextResponse('Forbidden', { status: 403 });
+  let resolved: string | null = null;
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      resolved = candidate;
+      break;
+    }
   }
 
-  if (!fs.existsSync(resolved) || !fs.statSync(resolved).isFile()) {
+  if (!resolved) {
     return new NextResponse('File Not Found', { status: 404 });
   }
 

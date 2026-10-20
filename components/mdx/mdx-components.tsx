@@ -172,6 +172,22 @@ export const mdxComponents = {
       </pre>
     );
   },
+  img: ({ src, alt, ...props }: React.ComponentPropsWithoutRef<'img'>) => (
+    <figure className="my-8 flex flex-col items-center">
+      <img
+        src={src}
+        alt={alt || ''}
+        loading="lazy"
+        className="max-h-[550px] w-auto max-w-full rounded-xl border border-border/80 bg-card/60 object-contain shadow-sm"
+        {...props}
+      />
+      {alt && alt !== 'undefined' && (
+        <figcaption className="mt-2.5 text-center font-mono text-xs text-muted-foreground">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  ),
   // Custom MDX Elements
   Callout,
   Steps,

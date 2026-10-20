@@ -207,6 +207,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           )}
         </header>
 
+        {article.coverImage?.url && (
+          <div className="relative mb-10 overflow-hidden rounded-2xl border border-border/80 bg-card/40 shadow-sm">
+            <div className="relative aspect-[16/9] w-full">
+              <Image
+                src={article.coverImage.url}
+                alt={article.title}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        )}
+
         <article className="prose-content">
           <MdxRenderer source={article.content} />
         </article>

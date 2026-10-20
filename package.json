@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
-    "prebuild": "git submodule update --init --recursive || true",
+    "prebuild": "git submodule update --init --recursive || true && mkdir -p public/content/articles && cp -R content/articles/images public/content/articles/ || true",
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "next lint"
