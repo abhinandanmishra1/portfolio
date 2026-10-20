@@ -45,24 +45,21 @@ export function Hero() {
           <div className="mt-7 max-w-2xl space-y-4 text-[15px] leading-[1.65] text-neutral-600 dark:text-neutral-400">
             {heroBio.map((para, i) => (
               <p key={i}>
-                {para.text.split(/\b/).map((part, j) => {
-                  const link = para.links.find(
-                    (l) => l.label.toLowerCase() === part.toLowerCase(),
-                  );
-                  if (link) {
-                    return (
-                      <a
-                        key={j}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium text-foreground underline decoration-blue-500/40 underline-offset-4 transition-colors hover:decoration-blue-500"
-                      >
-                        {part}
-                      </a>
-                    );
+                {para.map((seg, j) => {
+                  if (typeof seg === 'string') {
+                    return <span key={j}>{seg}</span>;
                   }
-                  return <span key={j}>{part}</span>;
+                  return (
+                    <a
+                      key={j}
+                      href={seg.href}
+                      target={seg.external ? '_blank' : undefined}
+                      rel={seg.external ? 'noopener noreferrer' : undefined}
+                      className="font-medium text-foreground underline decoration-blue-500/40 underline-offset-4 transition-colors hover:decoration-blue-500"
+                    >
+                      {seg.text}
+                    </a>
+                  );
                 })}
               </p>
             ))}

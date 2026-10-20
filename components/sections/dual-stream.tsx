@@ -38,7 +38,7 @@ export function DualStream() {
             ))}
           </ul>
           <Link
-            href="#honors"
+            href="/projects"
             className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-foreground/80 transition-all hover:gap-2 hover:text-foreground"
           >
             All Projects
@@ -53,10 +53,8 @@ export function DualStream() {
           <ul className="divide-y divide-border">
             {recentArticles.map((article) => (
               <li key={article.title}>
-                <a
+                <Link
                   href={article.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group flex items-baseline gap-4 py-4"
                 >
                   <span className="shrink-0 font-mono text-[11.5px] text-muted-foreground">
@@ -65,19 +63,17 @@ export function DualStream() {
                   <span className="text-[14px] leading-snug text-foreground transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     {article.title}
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a
-            href={portfolio.blogUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/articles"
             className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-foreground/80 transition-all hover:gap-2 hover:text-foreground"
           >
             All Articles
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
