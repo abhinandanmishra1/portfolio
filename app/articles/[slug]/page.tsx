@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Calendar, Share2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, Calendar, Share2 } from 'lucide-react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/sections/footer';
 import { MdxRenderer } from '@/components/mdx/mdx-renderer';
-import { getAllSlugs, getArticleBySlug } from '@/lib/mdx';
+import { getAllSlugs, getArticleBySlug, getAdjacentArticles } from '@/lib/mdx';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -58,6 +58,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const { prevArticle, nextArticle } = getAdjacentArticles(slug);
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -87,13 +89,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 pt-28 pb-20">
-        <Link
-          href="/articles"
-          className="group mb-8 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-          <span>all articles</span>
-        </Link>
+        <div className="mb-8 flex items-center justify-between">
+          <Link
+            href="/articles"
+            className="group inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <span>all articles</span>
+          </Link>
+
+          {nextArticle && (
+            <Link
+              href={`/articles/${nextArticle.slug}`}
+              className="group inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+              title={nextArticle.title}
+            >
+              <span>next article</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          )}
+        </div>
 
         <header className="mb-10 border-b border-border/70 pb-8">
           <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
@@ -156,7 +171,59 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <MdxRenderer source={article.content} />
         </article>
 
-        <footer className="mt-16 border-t border-border/80 pt-8">
+        {/* Adjacent Articles Navigation (Created Date Order) */}
+        {(prevArticle || nextArticle) && (
+          <nav
+            aria-label="Article pagination"
+            className="mt-14 grid grid-cols-1 gap-4 border-t border-border/80 pt-8 sm:grid-cols-2"
+          >
+            {prevArticle ? (
+              <Link
+                href={`/articles/${prevArticle.slug}`}
+                className="group flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 p-4 transition-all hover:border-blue-500/40 hover:bg-card/70"
+              >
+                <div>
+                  <div className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
+                    <span>Previous Article</span>
+                  </div>
+                  <div className="mt-2 font-serif text-base italic font-medium leading-snug text-foreground line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    {prevArticle.title}
+                  </div>
+                </div>
+                <div className="mt-3 font-mono text-[11px] text-muted-foreground">
+                  {prevArticle.date}
+                </div>
+              </Link>
+            ) : (
+              <div className="hidden sm:block" />
+            )}
+
+            {nextArticle ? (
+              <Link
+                href={`/articles/${nextArticle.slug}`}
+                className="group flex flex-col justify-between items-end text-right rounded-xl border border-border/70 bg-card/40 p-4 transition-all hover:border-blue-500/40 hover:bg-card/70 sm:col-start-2"
+              >
+                <div className="w-full">
+                  <div className="flex items-center justify-end gap-1.5 font-mono text-xs text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    <span>Next Article</span>
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                  <div className="mt-2 font-serif text-base italic font-medium leading-snug text-foreground line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    {nextArticle.title}
+                  </div>
+                </div>
+                <div className="mt-3 font-mono text-[11px] text-muted-foreground">
+                  {nextArticle.date}
+                </div>
+              </Link>
+            ) : (
+              <div className="hidden sm:block" />
+            )}
+          </nav>
+        )}
+
+        <footer className="mt-10 border-t border-border/60 pt-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link
               href="/articles"

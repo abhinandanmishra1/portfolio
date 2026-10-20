@@ -224,6 +224,28 @@ export function getAllArticles(): Article[] {
   return articles.sort((a, b) => (new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()));
 }
 
+export function getAdjacentArticles(currentSlug: string): {
+  prevArticle: Article | null;
+  nextArticle: Article | null;
+} {
+  // Sort in ASCENDING order of creation date (oldest first)
+  const articles = getAllArticles().sort((a, b) => {
+    const diff = new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime();
+    if (diff !== 0) return diff;
+    return a.slug.localeCompare(b.slug);
+  });
+
+  const index = articles.findIndex((a) => a.slug === currentSlug);
+  if (index === -1) {
+    return { prevArticle: null, nextArticle: null };
+  }
+
+  return {
+    prevArticle: index > 0 ? articles[index - 1] : null,
+    nextArticle: index < articles.length - 1 ? articles[index + 1] : null,
+  };
+}
+
 export function getAllTags(): { name: string; slug: string; count: number }[] {
   const articles = getAllArticles();
   const map = new Map<string, { name: string; slug: string; count: number }>();
