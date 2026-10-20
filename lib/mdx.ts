@@ -4,6 +4,14 @@ import matter from 'gray-matter';
 
 const contentDirectory = path.join(process.cwd(), 'content/articles');
 
+function getResearchDirectories(): string[] {
+  const dirs = [
+    path.join(process.cwd(), 'content/researches'),
+    path.join(process.cwd(), 'content/research'),
+  ];
+  return dirs.filter((d) => fs.existsSync(d));
+}
+
 export interface ArticleTag {
   name: string;
   slug: string;
@@ -32,6 +40,20 @@ export interface Article {
     url: string;
   };
   author: ArticleAuthor;
+  content: string;
+}
+
+export interface ResearchPaper {
+  slug: string;
+  title: string;
+  authors: string;
+  tag: string;
+  note: string;
+  paperUrl?: string;
+  publishedAt: string;
+  date: string;
+  readTimeInMinutes: number;
+  takeaways: string[];
   content: string;
 }
 
@@ -137,4 +159,89 @@ export function getAllTags(): { name: string; slug: string; count: number }[] {
 export function getArticlesByTag(tagSlug: string): Article[] {
   const articles = getAllArticles();
   return articles.filter((a) => a.tags.some((t) => t.slug === tagSlug));
+}
+
+// ==========================================
+// RESEARCH & PAPERSHELF DYNAMIC ENGINE
+// ==========================================
+
+export function getAllResearchSlugs(): string[] {
+  const dirs = getResearchDirectories();
+  const slugs = new Set<string>();
+
+  for (const dir of dirs) {
+    try {
+      const files = fs.readdirSync(dir);
+      for (const file of files) {
+        if (file.endsWith('.mdx') || file.endsWith('.md')) {
+          slugs.add(file.replace(/\.(mdx|md)$/, ''));
+        }
+      }
+    } catch {
+      // directory read failure or not found
+    }
+  }
+
+  return Array.from(slugs);
+}
+
+export function getResearchBySlug(slug: string): ResearchPaper | null {
+  try {
+    const dirs = getResearchDirectories();
+    let fullPath: string | null = null;
+
+    for (const dir of dirs) {
+      const pMdx = path.join(dir, `${slug}.mdx`);
+      const pMd = path.join(dir, `${slug}.md`);
+      if (fs.existsSync(pMdx)) {
+        fullPath = pMdx;
+        break;
+      }
+      if (fs.existsSync(pMd)) {
+        fullPath = pMd;
+        break;
+      }
+    }
+
+    if (!fullPath || !fs.existsSync(fullPath)) {
+      return null;
+    }
+
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    const publishedAt = data.publishedAt || data.date || new Date().toISOString();
+    const dateFormatted = data.date ? data.date : formatDate(publishedAt);
+
+    return {
+      slug,
+      title: data.title || slug,
+      authors: data.authors || 'Seminal Research',
+      tag: data.tag || 'Distributed Systems',
+      note: data.note || data.brief || data.description || '',
+      paperUrl: data.paperUrl || data.href,
+      publishedAt,
+      date: dateFormatted,
+      readTimeInMinutes: data.readTimeInMinutes || Math.max(1, Math.round(content.split(/\s+/).length / 200)),
+      takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
+      content,
+    };
+  } catch (error) {
+    console.error(`Error reading research paper [${slug}]:`, error);
+    return null;
+  }
+}
+
+export function getAllResearch(): ResearchPaper[] {
+  const slugs = getAllResearchSlugs();
+  const papersList: ResearchPaper[] = [];
+
+  for (const slug of slugs) {
+    const paper = getResearchBySlug(slug);
+    if (paper) {
+      papersList.push(paper);
+    }
+  }
+
+  return papersList.sort((a, b) => (new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()));
 }

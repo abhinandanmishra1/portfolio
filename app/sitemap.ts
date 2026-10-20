@@ -1,9 +1,10 @@
 import type { MetadataRoute } from 'next';
-import { getAllArticles } from '@/lib/mdx';
+import { getAllArticles, getAllResearch } from '@/lib/mdx';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://abhinandanmishra.in';
   const articles = getAllArticles();
+  const researchPapers = getAllResearch();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -45,5 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...articleRoutes];
+  const researchRoutes: MetadataRoute.Sitemap = researchPapers.map((paper) => ({
+    url: `${baseUrl}/research/${paper.slug}`,
+    lastModified: new Date(paper.publishedAt),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...articleRoutes, ...researchRoutes];
 }
