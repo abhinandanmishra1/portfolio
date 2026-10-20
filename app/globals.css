@@ -81,3 +81,29 @@ html {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Shiki dual-theme syntax highlighting */
+.shiki {
+  background-color: transparent !important;
+}
+
+.shiki code {
+  color: var(--shiki-light, inherit);
+}
+
+.shiki span {
+  color: var(--shiki-light, inherit);
+  font-style: var(--shiki-light-font-style, inherit);
+  font-weight: var(--shiki-light-font-weight, inherit);
+}
+
+.dark .shiki code {
+  color: var(--shiki-dark, inherit) !important;
+}
+
+.dark .shiki span {
+  color: var(--shiki-dark, inherit) !important;
+  font-style: var(--shiki-dark-font-style, inherit) !important;
+  font-weight: var(--shiki-dark-font-weight, inherit) !important;
+}
+

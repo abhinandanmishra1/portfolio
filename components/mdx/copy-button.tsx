@@ -3,7 +3,13 @@
 import * as React from 'react';
 import { Check, Copy } from 'lucide-react';
 
-export function CopyButton({ text }: { text: string }) {
+export function CopyButton({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) {
   const [copied, setCopied] = React.useState(false);
 
   const onCopy = async () => {
@@ -21,7 +27,10 @@ export function CopyButton({ text }: { text: string }) {
       onClick={onCopy}
       type="button"
       aria-label={copied ? 'Copied code' : 'Copy code to clipboard'}
-      className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border/80 bg-background/80 text-muted-foreground backdrop-blur transition hover:border-foreground/40 hover:text-foreground"
+      className={
+        className ||
+        'inline-flex h-7 w-7 items-center justify-center rounded-md border border-border/70 bg-background/70 text-muted-foreground backdrop-blur transition hover:border-foreground/40 hover:text-foreground hover:bg-muted/50'
+      }
     >
       {copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
     </button>

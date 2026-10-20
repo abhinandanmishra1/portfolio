@@ -151,11 +151,19 @@ export const mdxComponents = {
   },
   pre: ({ children }: { children: any }) => {
     // Check if children is a code block
-    if (children?.props?.className?.startsWith('language-')) {
-      const lang = children.props.className.replace('language-', '');
-      const code = String(children.props.children || '');
-      const filename = children.props.filename;
-      return <CodeSnippet code={code} lang={lang} filename={filename} />;
+    if (children?.props) {
+      const className = children.props.className || '';
+      const langMatch = className.match(/language-([a-zA-Z0-9_+#-]+)/);
+      const lang = langMatch ? langMatch[1] : (children.props['data-language'] || '');
+      const rawCode = children.props.children;
+      const code =
+        typeof rawCode === 'string'
+          ? rawCode
+          : Array.isArray(rawCode)
+            ? rawCode.join('')
+            : String(rawCode || '');
+      const filename = children.props.filename || children.props['data-filename'];
+      return <CodeSnippet code={code} lang={lang || 'text'} filename={filename} />;
     }
     // Generic pre fallback
     return (
