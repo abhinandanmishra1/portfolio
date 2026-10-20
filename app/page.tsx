@@ -19,8 +19,8 @@ export default function Home() {
         <Papershelf />
         <ExperienceTimeline />
         <Honors />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

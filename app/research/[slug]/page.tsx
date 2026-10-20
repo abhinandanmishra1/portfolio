@@ -189,7 +189,7 @@ export default async function ResearchDetailPage({ params }: ResearchPageProps) 
           </div>
         </footer>
       </main>
-      <Footer />
+      <Footer maxWidth="3xl" />
     </>
   );
 }

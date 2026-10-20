@@ -167,7 +167,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </footer>
       </main>
-      <Footer />
+      <Footer maxWidth="3xl" />
     </>
   );
 }
