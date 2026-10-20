@@ -34,6 +34,7 @@ export interface Article {
   publishedAt: string;
   date: string; // Formatted date e.g. "Oct 2025"
   readTimeInMinutes: number;
+  category?: string;
   tags: ArticleTag[];
   series?: ArticleSeries;
   coverImage?: {
@@ -109,6 +110,7 @@ export function getArticleBySlug(slug: string): Article | null {
       publishedAt,
       date: dateFormatted,
       readTimeInMinutes: data.readTimeInMinutes || Math.max(1, Math.round(content.split(/\s+/).length / 200)),
+      category: data.category || '',
       tags,
       series: data.series,
       coverImage: data.coverImage,
@@ -122,6 +124,21 @@ export function getArticleBySlug(slug: string): Article | null {
     console.error(`Error reading article [${slug}]:`, error);
     return null;
   }
+}
+
+export function getAllCategories(): { name: string; count: number }[] {
+  const articles = getAllArticles();
+  const map = new Map<string, number>();
+
+  for (const article of articles) {
+    if (article.category) {
+      map.set(article.category, (map.get(article.category) || 0) + 1);
+    }
+  }
+
+  return Array.from(map.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 export function getAllArticles(): Article[] {

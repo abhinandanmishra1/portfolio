@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, BookOpen, Clock } from 'lucide-react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/sections/footer';
-import { getAllArticles, getAllTags } from '@/lib/mdx';
+import { getAllArticles, getAllCategories, getAllTags } from '@/lib/mdx';
 
 export const metadata: Metadata = {
   title: 'Articles & System Deep Dives',
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function ArticlesPage() {
   const articles = getAllArticles();
+  const categories = getAllCategories();
   const tags = getAllTags();
 
   return (
@@ -35,18 +36,18 @@ export default function ArticlesPage() {
             Essays & System Design Deep Dives
           </h1>
           <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
-            Practical, in-depth breakdowns of database internals, concurrency anomalies, cache architectures, and high-performance algorithms.
+            Practical, in-depth breakdowns of distributed systems, database internals, low-level design patterns, operating systems, and high-performance algorithms.
           </p>
 
-          {tags.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-1.5">
-              {tags.map((tag) => (
+          {categories.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {categories.map((cat) => (
                 <span
-                  key={tag.slug}
-                  className="rounded-full border border-border/80 bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+                  key={cat.name}
+                  className="rounded-full border border-border/80 bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-blue-500/40"
                 >
-                  #{tag.name}{' '}
-                  <span className="text-[10px] opacity-60">({tag.count})</span>
+                  {cat.name}{' '}
+                  <span className="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">({cat.count})</span>
                 </span>
               ))}
             </div>
@@ -57,13 +58,21 @@ export default function ArticlesPage() {
           {articles.map((article) => (
             <article key={article.slug} className="group py-8 transition-colors">
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs text-muted-foreground">
                   <time dateTime={article.publishedAt}>{article.date}</time>
                   <span>·</span>
                   <span className="inline-flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     {article.readTimeInMinutes} min read
                   </span>
+                  {article.category && (
+                    <>
+                      <span>·</span>
+                      <span className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400">
+                        {article.category}
+                      </span>
+                    </>
+                  )}
                   {article.series && (
                     <>
                       <span>·</span>

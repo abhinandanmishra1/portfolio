@@ -106,6 +106,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <Clock className="h-3.5 w-3.5" />
               {article.readTimeInMinutes} min read
             </span>
+            {article.category && (
+              <>
+                <span>·</span>
+                <span className="rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-blue-600 dark:text-blue-400">
+                  {article.category}
+                </span>
+              </>
+            )}
             {article.series && (
               <>
                 <span>·</span>
