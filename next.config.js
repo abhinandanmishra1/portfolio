@@ -1,23 +1,26 @@
 /** @type {import('next').NextConfig} */
+const blogUrl = process.env.NEXT_PUBLIC_BLOG_URL || 'https://blog.abhinandanmishra.in';
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**",
+        protocol: 'https',
+        hostname: '**',
       },
     ],
   },
   async rewrites() {
+    if (!blogUrl) return [];
     return [
       {
-        source: "/blog",
-        destination: process.env.NEXT_PUBLIC_BLOG_URL,
+        source: '/blog',
+        destination: blogUrl,
       },
       {
-        source: "/blog/:path*",
-        destination: process.env.NEXT_PUBLIC_BLOG_URL + "/:path*",
+        source: '/blog/:path*',
+        destination: `${blogUrl}/:path*`,
       },
     ];
   },
