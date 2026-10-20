@@ -66,6 +66,19 @@ export interface HonorItem {
   year: string;
 }
 
+export interface IndustryRecognition {
+  id: string;
+  badge: string;
+  title: string;
+  organization: string;
+  date: string;
+  summary: string;
+  story: string[];
+  image: string;
+  linkedinUrl: string;
+  tags: string[];
+}
+
 export interface NavLink {
   label: string;
   href: string;
@@ -226,19 +239,19 @@ export const recentProjects: ProjectItem[] = [
     ],
   },
   {
-    name: 'AI Shipment Copilot',
+    name: 'BlinkCDN',
     role: 'Creator',
-    description: 'Multi-agent logistics workflow copilot for freight route planning and exception handling.',
-    href: 'https://github.com/abhinandanmishra1/AI-Shipment-Copilot',
-    github: 'https://github.com/abhinandanmishra1/AI-Shipment-Copilot',
-    metric: 'Creator',
-    tags: ['Multi-agent', 'Logistics', 'Python', 'FastAPI', 'LLM'],
+    description: 'Self-hosted CDN engine using GitHub repositories as storage and Netlify Edge for global distribution.',
+    href: 'https://blinkcdn.netlify.app/',
+    github: 'https://github.com/abhinandanmishra1/blinkcdn',
+    metric: 'Live Service',
+    tags: ['Edge CDN', 'Netlify Edge', 'GitHub API', 'Node.js', 'Serverless'],
     longDescription:
-      'An autonomous multi-agent copilot that monitors global freight movements, flags bottleneck exceptions, and dynamically recommends re-routing options based on live carrier telemetry.',
+      'A self-hosted CDN solution leveraging your GitHub repository as the storage backend and Netlify Edge Network for lightning-fast worldwide content delivery without recurring S3 costs.',
     highlights: [
-      'Multi-agent orchestration analyzing carrier telemetry and weather disruptions',
-      'Automated root-cause analysis for dwell-time delays across shipping hubs',
-      'Interactive natural-language query interface for supply chain operations teams',
+      'Uses GitHub REST API as version-controlled object storage with zero database maintenance',
+      'Netlify Edge CDN caches and serves static assets worldwide with sub-50ms latency',
+      'Basic Auth protected dashboard with drag-and-drop uploads and instant gallery search',
     ],
   },
 ];
@@ -424,6 +437,61 @@ export const honors: HonorItem[] = [
     rank: 'Knight (2026)',
     detail: 'Top 1.5% worldwide rating with over 1,000+ algorithm problems solved.',
     year: '2026',
+  },
+];
+
+export const recognitions: IndustryRecognition[] = [
+  {
+    id: 'deepmind-hackathon',
+    badge: 'Hackathon Winner',
+    organization: 'Google DeepMind',
+    title: 'AI-Powered Real-Time Scam & Fraud Detection',
+    date: 'Oct 2026',
+    summary:
+      'Won the Google DeepMind Bangalore Hackathon with an AI-powered Android application that detects potential digital frauds—like suspicious UPI payment requests, phishing URLs, and SMS scams—warning users in real time with vernacular voice guidance.',
+    story: [
+      'Built in collaboration with Dheeraj Motupalli during an intensive build sprint at Google DeepMind Bangalore.',
+      'Leveraged Gemini multimodal reasoning paired with speech-to-text and text-to-speech models for instant vernacular fraud alerts.',
+      'Engineered specifically for non-technical users in India who are vulnerable to deceptive social engineering and digital payment coercion.',
+    ],
+    image: '/images/honors/deepmind-hackathon.jpg',
+    linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7482665963629469696/',
+    tags: ['Google DeepMind', 'Gemini AI', 'Android', 'Vernacular Voice', 'Fraud Prevention'],
+  },
+  {
+    id: 'project44-hackathon-milestone',
+    badge: '2x Hackathon Winner & Judge',
+    organization: 'project44',
+    title: 'One Year Milestone: 2x AI Hackathon Winner & Season Judge',
+    date: '2026',
+    summary:
+      'Celebrating one year as SDE-II at project44—winning the internal AI in Action Hackathon twice consecutively and subsequently invited to serve as an official Judge for the next season.',
+    story: [
+      'Won the project44 AI in Action Hackathon twice consecutively for high-impact AI developer tooling.',
+      'Served as an official Judge evaluating cross-functional engineering innovations in the following hackathon season.',
+      'Architected a Figma-to-Code generation pipeline leveraging Figma MCP server to produce production-grade UI components in minutes.',
+      'Engineered a live UI Inspector enabling developers to visually inspect production interfaces and prompt real-time codebase modifications.',
+    ],
+    image: '/images/honors/project44-anniversary.jpg',
+    linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7432277851103723520/',
+    tags: ['project44', 'SDE-II', 'Hackathon Judge', 'Figma MCP', 'Developer Tooling'],
+  },
+  {
+    id: 'google-cloudrun-summit',
+    badge: 'Selected Attendee',
+    organization: 'Google Cloud',
+    title: 'Google Cloud Run Summit: Serverless AI Agents & Inference',
+    date: '2025 / 2026',
+    summary:
+      'Selected to attend an exclusive, intensive Google Cloud Run technical event at Google India (Kyoto Office), deep-diving into serverless architectures, containerized inference, and agent-to-agent communication.',
+    story: [
+      'Interactive masterclasses and hands-on labs led by Google Cloud leaders including Steren Giannini, Arun Ravindran, Amit Mittal, Shruti Mantri, and Harish Sharma.',
+      'Deep-dived into architecting scalable inference servers and multi-agent communication topologies without operational infrastructure overhead.',
+      'Explored real-world patterns for bridging low-latency containerized microservices and production AI deployment.',
+    ],
+    image: '/images/honors/google-cloudrun.jpg',
+    linkedinUrl: 'https://www.linkedin.com/posts/abhinandanmishra1_googlecloud-cloudrun-serverless-share-7383114611945869313-5esi/',
+    tags: ['Google Cloud', 'Cloud Run', 'Serverless', 'AI Agents', 'Inference Servers'],
   },
 ];
 

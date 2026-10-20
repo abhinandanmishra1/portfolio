@@ -4,7 +4,7 @@ import { SectionHeading } from '@/components/section-heading';
 export function Honors() {
   return (
     <section id="honors" className="pt-20 scroll-mt-20">
-      <SectionHeading index="05" title="Competitive programming honors" />
+      <SectionHeading index="05" title="Awards & contest honors" />
       <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
         {honors.map((honor) => (
           <div key={honor.contest} className="bg-background p-5">
@@ -30,7 +30,7 @@ export function Honors() {
           href="/honors"
           className="inline-flex items-center gap-1 text-[13px] font-medium text-foreground/80 transition-all hover:gap-2 hover:text-foreground"
         >
-          View All CP Honors & Ratings
+          View All Hackathon Wins & Honors
           <span className="font-mono text-xs text-muted-foreground">→</span>
         </a>
       </div>

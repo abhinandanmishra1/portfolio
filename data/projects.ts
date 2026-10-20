@@ -37,15 +37,16 @@ export const projects: Project[] = [
     badge: "Flagship Engine"
   },
   {
-    title: "AI Shipment Copilot",
-    tagline: "Autonomous Workflow Copilot for Global Shipment Planning",
+    title: "BlinkCDN",
+    tagline: "Self-Hosted CDN Engine Powered by GitHub & Netlify Edge",
     role: "Creator",
-    description: "Multi-agent AI orchestration system for logistics route optimization, risk factor assessment, and real-time what-if simulations with interactive geospatial timelines.",
-    category: "AI & Protocols",
+    description: "Serverless image delivery engine using GitHub repositories as version-controlled object storage and Netlify Edge Network for global caching and sub-50ms static delivery.",
+    category: "Full Stack & Systems",
     featured: true,
-    tags: ["Gemini API", "Multi-Agent Orchestration", "React", "TypeScript", "Vite"],
-    githubUrl: "https://github.com/abhinandanmishra1/AI-Shipment-Copilot",
-    badge: "AI Multi-Agent System"
+    tags: ["Node.js", "Netlify Edge", "GitHub API", "Serverless", "CDN Architecture"],
+    githubUrl: "https://github.com/abhinandanmishra1/blinkcdn",
+    liveUrl: "https://blinkcdn.netlify.app/",
+    badge: "Edge Architecture"
   },
   {
     title: "100xHires",
