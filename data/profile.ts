@@ -50,6 +50,6 @@ export const profile: Profile = {
     twitter: "https://x.com/abhinandan_0001",
     blog: process.env.NEXT_PUBLIC_BLOG_URL || "https://blog.abhinandanmishra.in",
     resume: "https://drive.google.com/file/d/1Gsj-Ww_6gSDKAXeiWW3r6K09JVdwHxnu/view",
-    email: "mailto:abhinandanmishra010@gmail.com"
+    email: "mailto:abhinandanmishra360@gmail.com"
   }
 };

@@ -9,7 +9,7 @@ export function ContactSection() {
   const [copied, setCopied] = React.useState(false);
   const [subject, setSubject] = React.useState("");
   const [body, setBody] = React.useState("");
-  const emailAddress = "abhinandanmishra010@gmail.com";
+  const emailAddress = "abhinandanmishra360@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(emailAddress);
