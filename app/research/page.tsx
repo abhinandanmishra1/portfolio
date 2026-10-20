@@ -10,10 +10,14 @@ export const metadata: Metadata = {
   title: 'Architectural Papershelf & Reading Notes',
   description:
     'Deep architectural breakdowns of classic distributed systems papers, database isolation models, probabilistic caching algorithms, and modern agent protocols.',
+  alternates: {
+    canonical: '/research',
+  },
   openGraph: {
     title: 'Architectural Papershelf & Reading Notes | Abhinandan Mishra',
     description:
       'Deep architectural breakdowns of classic distributed systems papers, database isolation models, probabilistic caching algorithms, and modern agent protocols.',
+    url: 'https://abhinandanmishra.in/research',
   },
 };
 

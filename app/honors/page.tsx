@@ -11,10 +11,14 @@ export const metadata: Metadata = {
   title: 'Honors, Hackathon Wins & Contest Rankings',
   description:
     'Hackathon victories at Google DeepMind, 2x AI hackathon winner & judge at project44, Google Cloud Run summit, and global competitive programming rankings (Google Kickstart, CodeChef, ICPC, LeetCode) by Abhinandan Mishra.',
+  alternates: {
+    canonical: '/honors',
+  },
   openGraph: {
     title: 'Honors, Hackathons & Industry Recognitions | Abhinandan Mishra',
     description:
       'Hackathon victories at Google DeepMind, 2x AI hackathon winner & judge at project44, Google Cloud Run summit, and global competitive programming rankings.',
+    url: 'https://abhinandanmishra.in/honors',
   },
 };
 

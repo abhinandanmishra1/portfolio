@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: 'Articles & System Deep Dives',
   description:
     'In-depth technical essays on distributed databases, isolation levels, caching strategies, and algorithms by Abhinandan Mishra.',
+  alternates: {
+    canonical: '/articles',
+  },
+  openGraph: {
+    title: 'Articles & System Deep Dives | Abhinandan Mishra',
+    description:
+      'In-depth technical essays on distributed databases, isolation levels, caching strategies, and algorithms.',
+    url: 'https://abhinandanmishra.in/articles',
+  },
 };
 
 export default function ArticlesPage() {

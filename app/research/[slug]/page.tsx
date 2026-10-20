@@ -36,6 +36,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `/research/${paper.slug}`,
+    },
     openGraph: {
       type: 'article',
       title,
@@ -43,11 +46,22 @@ export async function generateMetadata({
       publishedTime: paper.publishedAt,
       authors: [paper.authors],
       url: `https://abhinandanmishra.in/research/${paper.slug}`,
+      images: [
+        {
+          url: '/og.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      creator: '@abhinandan_0001',
+      site: '@abhinandan_0001',
+      images: ['/og.png'],
     },
   };
 }

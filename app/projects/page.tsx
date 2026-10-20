@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   title: 'Projects & Systems',
   description:
     'Flagship production systems, cloud execution engines, and developer tools built by Abhinandan Mishra.',
+  alternates: {
+    canonical: '/projects',
+  },
+  openGraph: {
+    title: 'Projects & Production Systems | Abhinandan Mishra',
+    description:
+      'Flagship production systems, cloud execution engines, and developer tools built by Abhinandan Mishra.',
+    url: 'https://abhinandanmishra.in/projects',
+  },
 };
 
 export default function ProjectsPage() {

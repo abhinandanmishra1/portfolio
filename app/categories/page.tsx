@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: 'Categories & Learning Tracks | Abhinandan Mishra',
   description:
     'Browse in-depth technical essays and system deep dives by category: System Design, Low Level Design, React & Frontend, Data Structures, and more.',
+  alternates: {
+    canonical: '/categories',
+  },
+  openGraph: {
+    title: 'Categories & Learning Tracks | Abhinandan Mishra',
+    description:
+      'Browse in-depth technical essays and system deep dives by category: System Design, Low Level Design, React & Frontend, Data Structures, and more.',
+    url: 'https://abhinandanmishra.in/categories',
+  },
 };
 
 export default function CategoriesIndexPage() {

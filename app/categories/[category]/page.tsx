@@ -36,9 +36,29 @@ export async function generateMetadata({
   return {
     title: `${category.name} — Technical Curriculum & Deep Dives`,
     description: `Read all ${category.count} in-depth articles on ${category.name} by Abhinandan Mishra, arranged chronologically from fundamentals to advanced systems.`,
+    alternates: {
+      canonical: `/categories/${categorySlug}`,
+    },
     openGraph: {
       title: `${category.name} | Abhinandan Mishra`,
       description: `Chronological technical track on ${category.name} (${category.count} articles).`,
+      url: `https://abhinandanmishra.in/categories/${categorySlug}`,
+      images: [
+        {
+          url: '/og.png',
+          width: 1200,
+          height: 630,
+          alt: `${category.name} — Abhinandan Mishra`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${category.name} — Technical Curriculum`,
+      description: `Chronological technical track on ${category.name} (${category.count} articles).`,
+      creator: '@abhinandan_0001',
+      site: '@abhinandan_0001',
+      images: ['/og.png'],
     },
   };
 }

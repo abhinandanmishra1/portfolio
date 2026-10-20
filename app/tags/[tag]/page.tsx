@@ -33,6 +33,14 @@ export async function generateMetadata({
   return {
     title: `#${tagInfo.name} — Technical Essays & Deep Dives`,
     description: `Browse all articles tagged with #${tagInfo.name} by Abhinandan Mishra.`,
+    alternates: {
+      canonical: `/tags/${tagSlug}`,
+    },
+    openGraph: {
+      title: `#${tagInfo.name} | Abhinandan Mishra`,
+      description: `Browse all articles tagged with #${tagInfo.name} by Abhinandan Mishra.`,
+      url: `https://abhinandanmishra.in/tags/${tagSlug}`,
+    },
   };
 }
 
