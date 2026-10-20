@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import {
   heroBio,
@@ -109,21 +110,19 @@ export function Hero() {
 export function HeroMeta() {
   return (
     <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border/70 py-5 font-mono text-xs text-muted-foreground">
-      <span>SWE II @ Project44</span>
+      <span>SDE-II @ Project44</span>
       <span className="hidden h-3 w-px bg-border sm:block" />
-      <span>Founder · SDE Forge</span>
+      <span>Co-Founder · SDE Forge</span>
       <span className="hidden h-3 w-px bg-border sm:block" />
       <span>LeetCode Knight · 2026</span>
       <span className="hidden h-3 w-px bg-border sm:block" />
-      <a
-        href={portfolio.blogUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href="/articles"
         className="inline-flex items-center gap-1 text-foreground transition-opacity hover:opacity-70"
       >
-        Read the blog
+        Read essays
         <ArrowUpRight className="h-3 w-3" />
-      </a>
+      </Link>
     </div>
   );
 }

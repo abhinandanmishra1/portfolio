@@ -82,9 +82,9 @@ export type BioSegment = string | BioSegmentLink;
 
 export const portfolio = {
   name: 'Abhinandan Mishra',
-  tagline: 'Software Engineer · Distributed Systems · Developer Tools',
+  tagline: 'SDE-II · Distributed Systems · Developer Tools',
   summary:
-    'Software Engineer II at Project44, founder of SDE Forge, and competitive programmer. Writes about database internals, caching, and system design.',
+    'SDE-II at Project44, co-founder of SDE Forge, and competitive programmer. Writes about database internals, caching, and system design.',
   avatar: 'https://github.com/abhinandanmishra1.png',
   email: 'abhinandanmishra360@gmail.com',
   blogUrl: '/articles',
@@ -101,12 +101,12 @@ export const navLinks: NavLink[] = [
 
 export const heroBio: BioSegment[][] = [
   [
-    'I am a software engineer passionate about distributed systems, low-latency execution engines, and developer productivity tooling. Currently, I am a Software Engineer II at ',
+    'I am an engineer passionate about distributed systems, low-latency execution engines, and developer productivity tooling. Currently, I am an SDE-II at ',
     { text: 'Project44', href: 'https://project44.com', external: true },
     ', optimizing core logistics APIs serving 10M+ daily tracking updates and architecting internal developer tooling.',
   ],
   [
-    'On the side, I am the founder of ',
+    'On the side, I am a co-founder of ',
     { text: 'SDE Forge', href: 'https://sdeforge.com', external: true },
     ' (an interactive system design simulator and mock interviewer) and creator of ',
     { text: 'CodePad', href: 'https://codepad.abhinandanmishra.in', external: true },
@@ -120,7 +120,7 @@ export const heroBio: BioSegment[][] = [
 export const socialLinks: SocialLink[] = [
   { label: 'GitHub', href: 'https://github.com/abhinandanmishra1', icon: 'github', handle: 'abhinandanmishra1' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abhinandanmishra1', icon: 'linkedin', handle: 'in/abhinandanmishra1' },
-  { label: 'X / Twitter', href: 'https://x.com/abhinandan360', icon: 'twitter', handle: '@abhinandan360' },
+  { label: 'X / Twitter', href: 'https://x.com/abhinandan_0001', icon: 'twitter', handle: '@abhinandan_0001' },
   { label: 'LeetCode', href: 'https://leetcode.com/u/abhinandanmishra1', icon: 'leetcode', handle: '2026 Knight' },
   { label: 'Email', href: 'mailto:abhinandanmishra360@gmail.com', icon: 'mail', handle: 'abhinandanmishra360@gmail.com' },
 ];
@@ -163,11 +163,11 @@ export const exploreCards: ExploreCard[] = [
 export const recentProjects: ProjectItem[] = [
   {
     name: 'SDE Forge',
-    role: 'Founder & Lead Architect',
+    role: 'Co-Founder & Lead Architect',
     description: 'AI system design simulator with live architecture sandboxes and mock interview agents.',
     href: 'https://sdeforge.com',
     github: 'https://github.com/abhinandanmishra1',
-    metric: 'Founder',
+    metric: 'Co-Founder',
     tags: ['Next.js', 'Redis', 'LLM Agents', 'TypeScript', 'Tailwind'],
     longDescription:
       'An end-to-end interactive system design platform designed to bridge the gap between static theory and real-world system architecture. Features an AI mock interviewer that conducts realistic design rounds and evaluates throughput, availability, and failure domains.',
@@ -350,7 +350,7 @@ export const papers: PaperItem[] = [
 export const experience: ExperienceItem[] = [
   {
     company: 'Project44',
-    role: 'Software Engineer II',
+    role: 'SDE-II',
     period: 'Feb 2025 — Present',
     location: 'Bengaluru, India',
     href: 'https://project44.com',

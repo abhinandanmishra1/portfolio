@@ -53,6 +53,13 @@ export const metadata: Metadata = {
     title: `${portfolio.name} — ${portfolio.tagline}`,
     description: portfolio.summary,
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,
@@ -69,7 +76,7 @@ export default function RootLayout({
     '@type': 'Person',
     name: portfolio.name,
     url: 'https://abhinandanmishra.in',
-    jobTitle: 'Software Engineer II',
+    jobTitle: 'SDE-II',
     worksFor: {
       '@type': 'Organization',
       name: 'Project44',
@@ -78,7 +85,7 @@ export default function RootLayout({
     sameAs: [
       'https://github.com/abhinandanmishra1',
       'https://www.linkedin.com/in/abhinandanmishra1',
-      'https://x.com/abhinandan360',
+      'https://x.com/abhinandan_0001',
       'https://leetcode.com/u/abhinandanmishra1',
     ],
     knowsAbout: [
