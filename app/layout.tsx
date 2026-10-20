@@ -64,8 +64,41 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: portfolio.name,
+    url: 'https://abhinandanmishra.in',
+    jobTitle: 'Software Engineer II',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Project44',
+      url: 'https://project44.com',
+    },
+    sameAs: [
+      'https://github.com/abhinandanmishra1',
+      'https://www.linkedin.com/in/abhinandanmishra1',
+      'https://x.com/abhinandan360',
+      'https://leetcode.com/u/abhinandanmishra1',
+    ],
+    knowsAbout: [
+      'Distributed Systems',
+      'Database Internals',
+      'Transaction Isolation Levels',
+      'Caching Topologies',
+      'System Design',
+      'Algorithms',
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
       <body
         className={`${sans.variable} ${serif.variable} ${mono.variable} font-sans antialiased`}
       >
