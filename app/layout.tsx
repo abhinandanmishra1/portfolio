@@ -1,58 +1,61 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter, Lora, JetBrains_Mono } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
+import { portfolio } from '@/data/portfolio';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+const sans = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
+const serif = Lora({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Abhinandan Mishra | Software Engineer II",
-  description:
-    "Portfolio of Abhinandan Mishra, Software Engineer II at Project44. Building scalable distributed systems, high-performance web applications, and developer tools.",
+  metadataBase: new URL('https://abhinandanmishra.in'),
+  title: {
+    default: `${portfolio.name} — ${portfolio.tagline}`,
+    template: `%s — ${portfolio.name}`,
+  },
+  description: portfolio.summary,
   keywords: [
-    "Abhinandan Mishra",
-    "Software Engineer",
-    "Project44",
-    "Full Stack Developer",
-    "System Design",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "SDE Forge",
-    "CodePad",
+    'Abhinandan Mishra',
+    'Software Engineer',
+    'Distributed Systems',
+    'System Design',
+    'Project44',
+    'SDE Forge',
+    'Competitive Programming',
   ],
-  authors: [{ name: "Abhinandan Mishra" }],
-  creator: "Abhinandan Mishra",
+  authors: [{ name: portfolio.name }],
+  creator: portfolio.name,
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://abhinandanmishra.in",
-    title: "Abhinandan Mishra | Software Engineer II",
-    description:
-      "Software Engineer II at Project44 building scalable distributed systems and delightful web applications.",
-    siteName: "Abhinandan Mishra",
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://abhinandanmishra.in',
+    title: `${portfolio.name} — ${portfolio.tagline}`,
+    description: portfolio.summary,
+    siteName: `${portfolio.name} — Personal Site`,
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Abhinandan Mishra | Software Engineer II",
-    description:
-      "Software Engineer II at Project44 building scalable distributed systems and delightful web applications.",
-    creator: "@abhinandan_0001",
+    card: 'summary_large_image',
+    title: `${portfolio.name} — ${portfolio.tagline}`,
+    description: portfolio.summary,
   },
-  icons: {
-    icon: "/favicon.svg",
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -62,19 +65,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${sans.variable} ${serif.variable} ${mono.variable} font-sans antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>

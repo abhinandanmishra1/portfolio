@@ -1,36 +1,45 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import * as React from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
 
-export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+export function ThemeToggle({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  React.useEffect(() => setMounted(true), []);
 
-  if (!mounted) {
-    return (
-      <div className="w-9 h-9 rounded-lg border border-border bg-muted/30" />
-    );
-  }
-
-  const isDark = (resolvedTheme || theme) === "dark";
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 rounded-lg border border-border bg-card/60 hover:bg-muted/80 text-foreground transition-colors duration-150 inline-flex items-center justify-center"
-      aria-label="Toggle theme"
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      type="button"
+      aria-label="Toggle color theme"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className={cn(
+        'group inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground',
+        className,
+      )}
     >
-      {isDark ? (
-        <Sun className="w-4 h-4 text-amber-400 transition-transform" />
+      {mounted ? (
+        <span className="relative inline-flex h-4 w-4 items-center justify-center">
+          <Sun
+            className={cn(
+              'absolute h-4 w-4 transition-all duration-200',
+              isDark ? 'scale-0 rotate-12 opacity-0' : 'scale-100 rotate-0 opacity-100',
+            )}
+          />
+          <Moon
+            className={cn(
+              'absolute h-4 w-4 transition-all duration-200',
+              isDark ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-12 opacity-0',
+            )}
+          />
+        </span>
       ) : (
-        <Moon className="w-4 h-4 text-slate-700 transition-transform" />
+        <span className="h-4 w-4" />
       )}
     </button>
   );

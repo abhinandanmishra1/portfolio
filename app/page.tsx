@@ -1,25 +1,26 @@
-import { Hero } from "@/components/hero";
-import { AboutSection } from "@/components/about-section";
-import { ExperienceSection } from "@/components/experience-section";
-import { ProjectsSection } from "@/components/projects-section";
-import { ResearchSection } from "@/components/research-section";
-import { AchievementsSection } from "@/components/achievements-section";
-import { SkillsSection } from "@/components/skills-section";
-import { WritingPreview } from "@/components/writing-preview";
-import { ContactSection } from "@/components/contact-section";
+import { Navbar } from '@/components/navbar';
+import { Hero, HeroMeta } from '@/components/sections/hero';
+import { ExploreGrid } from '@/components/sections/explore-grid';
+import { DualStream } from '@/components/sections/dual-stream';
+import { Papershelf } from '@/components/sections/papershelf';
+import { ExperienceTimeline } from '@/components/sections/experience';
+import { Honors } from '@/components/sections/honors';
+import { Footer } from '@/components/sections/footer';
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <ResearchSection />
-      <AchievementsSection />
-      <SkillsSection />
-      <WritingPreview />
-      <ContactSection />
+      <Navbar />
+      <main className="mx-auto max-w-4xl px-6 pb-10">
+        <Hero />
+        <HeroMeta />
+        <ExploreGrid />
+        <DualStream />
+        <Papershelf />
+        <ExperienceTimeline />
+        <Honors />
+        <Footer />
+      </main>
     </>
   );
 }
