@@ -69,15 +69,22 @@ export default function HonorsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
                   {/* Visual Preview */}
                   <div className="md:col-span-5 flex flex-col justify-between">
-                    <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/80 bg-muted/40">
+                    <a
+                      href={item.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/img relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-border/80 bg-neutral-900/40 dark:bg-neutral-950/60 p-2 transition-colors hover:border-blue-500/40"
+                      title="View on LinkedIn"
+                    >
                       <Image
                         src={item.image}
                         alt={item.title}
-                        fill
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 400px"
+                        width={item.imageWidth || 800}
+                        height={item.imageHeight || 600}
+                        className="max-h-[500px] w-auto max-w-full rounded-lg object-contain transition-transform duration-500 group-hover/img:scale-[1.02]"
+                        sizes="(max-width: 768px) 100vw, 420px"
                       />
-                    </div>
+                    </a>
                     <div className="mt-4 hidden md:block">
                       <a
                         href={item.linkedinUrl}
@@ -86,7 +93,7 @@ export default function HonorsPage() {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/80 py-2.5 font-mono text-xs font-medium text-foreground transition-all hover:border-blue-500/40 hover:bg-accent"
                       >
                         <LinkedInIcon className="h-3.5 w-3.5 text-[#0A66C2]" />
-                        <span>View Verified Post on LinkedIn</span>
+                        <span>View on LinkedIn</span>
                         <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
                       </a>
                     </div>
@@ -152,7 +159,7 @@ export default function HonorsPage() {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background py-2.5 font-mono text-xs font-medium text-foreground transition-colors hover:bg-accent"
                       >
                         <LinkedInIcon className="h-3.5 w-3.5 text-[#0A66C2]" />
-                        <span>View Verified Post on LinkedIn</span>
+                        <span>View on LinkedIn</span>
                         <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
                       </a>
                     </div>

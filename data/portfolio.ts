@@ -75,6 +75,8 @@ export interface IndustryRecognition {
   summary: string;
   story: string[];
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   linkedinUrl: string;
   tags: string[];
 }
@@ -455,6 +457,8 @@ export const recognitions: IndustryRecognition[] = [
       'Engineered specifically for non-technical users in India who are vulnerable to deceptive social engineering and digital payment coercion.',
     ],
     image: '/images/honors/deepmind-hackathon.jpg',
+    imageWidth: 1152,
+    imageHeight: 1536,
     linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7482665963629469696/',
     tags: ['Google DeepMind', 'Gemini AI', 'Android', 'Vernacular Voice', 'Fraud Prevention'],
   },
@@ -473,6 +477,8 @@ export const recognitions: IndustryRecognition[] = [
       'Engineered a live UI Inspector enabling developers to visually inspect production interfaces and prompt real-time codebase modifications.',
     ],
     image: '/images/honors/project44-anniversary.jpg',
+    imageWidth: 800,
+    imageHeight: 1558,
     linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7432277851103723520/',
     tags: ['project44', 'SDE-II', 'Hackathon Judge', 'Figma MCP', 'Developer Tooling'],
   },
@@ -490,6 +496,8 @@ export const recognitions: IndustryRecognition[] = [
       'Explored real-world patterns for bridging low-latency containerized microservices and production AI deployment.',
     ],
     image: '/images/honors/google-cloudrun.jpg',
+    imageWidth: 800,
+    imageHeight: 409,
     linkedinUrl: 'https://www.linkedin.com/posts/abhinandanmishra1_googlecloud-cloudrun-serverless-share-7383114611945869313-5esi/',
     tags: ['Google Cloud', 'Cloud Run', 'Serverless', 'AI Agents', 'Inference Servers'],
   },
