@@ -145,15 +145,15 @@ export default async function ResearchDetailPage({ params }: ResearchPageProps) 
           )}
 
           {paper.takeaways && paper.takeaways.length > 0 && (
-            <div className="mt-6 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
-              <div className="mb-2.5 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                <Lightbulb className="h-3.5 w-3.5" />
+            <div className="mt-6 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5 sm:p-6">
+              <div className="mb-3.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                <Lightbulb className="h-4 w-4 shrink-0" />
                 <span>Key Architectural Insights</span>
               </div>
-              <ul className="space-y-2 text-[14px] leading-relaxed text-foreground/90">
+              <ul className="space-y-2.5 text-[14px] leading-relaxed text-foreground/90">
                 {paper.takeaways.map((takeaway, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
                     <span>{takeaway}</span>
                   </li>
                 ))}

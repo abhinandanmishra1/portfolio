@@ -109,15 +109,15 @@ export default function ResearchPage() {
                   </p>
 
                   {paper.takeaways && paper.takeaways.length > 0 && (
-                    <div className="rounded-xl border border-border/60 bg-muted/20 p-4.5">
-                      <div className="mb-2.5 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                        <Lightbulb className="h-3.5 w-3.5" />
+                    <div className="rounded-xl border border-border/60 bg-muted/20 p-5 sm:p-6">
+                      <div className="mb-3.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                        <Lightbulb className="h-4 w-4 shrink-0" />
                         <span>Key Architectural Insights</span>
                       </div>
-                      <ul className="space-y-2 text-[14px] leading-relaxed text-muted-foreground">
+                      <ul className="space-y-2.5 text-[14px] leading-relaxed text-muted-foreground">
                         {paper.takeaways.map((takeaway, i) => (
-                          <li key={i} className="flex items-start gap-2.5">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500/70" />
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500/70" />
                             <span>{takeaway}</span>
                           </li>
                         ))}
