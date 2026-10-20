@@ -1,0 +1,250 @@
+---
+title: "The Ultimate Guide to Writing MDX Blogs"
+brief: "Learn how to create beautiful, interactive blog posts using MDX with our custom component library."
+publishedAt: "2024-03-20T12:00:00Z"
+readTimeInMinutes: 15
+tags:
+  - name: "MDX"
+    slug: "mdx"
+  - name: "Blogging"
+    slug: "blogging"
+  - name: "React"
+    slug: "react"
+coverImage:
+  url: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=400&fit=crop"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+Welcome to your comprehensive guide on writing beautiful, interactive blog posts using MDX! This guide will show you how to leverage our powerful component library to create engaging content.
+
+<Callout type="info" title="What is MDX?">
+MDX is a powerful format that lets you write JSX in your markdown documents. It combines the simplicity of markdown with the power of React components.
+</Callout>
+
+## Getting Started
+
+Before you start writing your blog post, you'll need to understand the basic structure of an MDX file:
+
+<Steps>
+<Step title="Create your MDX file">
+Create a new `.mdx` file in the `src/content` directory with a descriptive name.
+</Step>
+
+<Step title="Add frontmatter">
+Every blog post starts with frontmatter - metadata about your post:
+
+```yaml
+---
+title: "Your Blog Title"
+brief: "A short description"
+publishedAt: "2024-03-20T12:00:00Z"
+readTimeInMinutes: 15
+tags:
+  - name: "Tag Name"
+    slug: "tag-slug"
+coverImage:
+  url: "your-image-url"
+author:
+  name: "Your Name"
+  profilePicture: "your-profile-picture"
+---
+```
+</Step>
+
+<Step title="Start writing">
+After the frontmatter, you can start writing your content using markdown and our custom components.
+</Step>
+</Steps>
+
+## Component Library & Use Cases
+
+Here are all the available components and how to use them effectively.
+
+### 1. Callouts
+**Use Case:** Highlighting warnings, tips, errors, or success messages that need to stand out from the main text.
+
+<Callout type="info" title="Info">
+  Use this for general information or context.
+</Callout>
+
+<Callout type="warning" title="Warning">
+  Use this to warn readers about potential pitfalls.
+</Callout>
+
+<Callout type="error" title="Error">
+  Use this to highlight critical errors or anti-patterns.
+</Callout>
+
+<Callout type="success" title="Success">
+  Use this to celebrate a completed step or correct approach.
+</Callout>
+
+```tsx
+<Callout type="info" title="Info">
+  Use this for general information or context.
+</Callout>
+```
+
+### 2. Code Blocks
+**Use Case:** Displaying code snippets with syntax highlighting, file names, and copy functionality.
+
+```typescript filename="example.ts"
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const getUser = (id: string): User => {
+  // Fetch user logic
+  return { id, name: "John Doe", email: "john@example.com" };
+};
+```
+
+### 3. Interactive Demos
+**Use Case:** Showcasing interactive widgets or UI elements directly in the blog post.
+
+<Demo title="Button Component">
+  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg">
+    Click Me!
+  </button>
+</Demo>
+
+```tsx
+<Demo title="Button Component">
+  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg">
+    Click Me!
+  </button>
+</Demo>
+```
+
+### 4. File Trees
+**Use Case:** Visualizing directory structures, project layouts, or file organization.
+
+<FileTree>
+  <FileTreeItem name="src" type="folder" defaultOpen>
+    <FileTreeItem name="components" type="folder">
+      <FileTreeItem name="Button.tsx" type="file" />
+      <FileTreeItem name="Card.tsx" type="file" />
+    </FileTreeItem>
+    <FileTreeItem name="utils" type="folder">
+      <FileTreeItem name="helpers.ts" type="file" />
+    </FileTreeItem>
+    <FileTreeItem name="App.tsx" type="file" />
+  </FileTreeItem>
+  <FileTreeItem name="package.json" type="file" />
+</FileTree>
+
+```tsx
+<FileTree>
+  <FileTreeItem name="src" type="folder" defaultOpen>
+    <FileTreeItem name="components" type="folder">
+      <FileTreeItem name="Button.tsx" type="file" />
+    </FileTreeItem>
+  </FileTreeItem>
+</FileTree>
+```
+
+### 5. Steps
+**Use Case:** Guiding readers through a sequential process or tutorial.
+
+<Steps>
+  <Step title="Install Dependencies">
+    Run `npm install` to install the required packages.
+  </Step>
+  <Step title="Configure">
+    Update your configuration file with the necessary API keys.
+  </Step>
+  <Step title="Run">
+    Start the development server with `npm run dev`.
+  </Step>
+</Steps>
+
+```tsx
+<Steps>
+  <Step title="Step 1">Description...</Step>
+  <Step title="Step 2">Description...</Step>
+</Steps>
+```
+
+### 6. Tabs
+**Use Case:** Showing multiple options (e.g., npm vs yarn), different language implementations, or before/after code.
+
+<Tabs defaultValue="npm">
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm install react
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add react
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm add react
+    ```
+  </TabItem>
+</Tabs>
+
+```tsx
+<Tabs defaultValue="npm">
+  <TabItem value="npm" label="npm">
+    npm install react
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    yarn add react
+  </TabItem>
+</Tabs>
+```
+
+### 7. Badges
+**Use Case:** Adding small labels or status indicators inline with text.
+
+This feature is <Badge variant="success">New</Badge> and currently in <Badge variant="warning">Beta</Badge>.
+
+```tsx
+This feature is <Badge variant="success">New</Badge>
+```
+
+### 8. Image Comparison
+**Use Case:** Comparing two images, such as design iterations, optimization results, or visual changes.
+
+<ImageComparison
+  before="https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=400&fit=crop"
+  after="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop"
+  alt="Office comparison"
+/>
+
+```tsx
+<ImageComparison
+  before="/path/to/before.jpg"
+  after="/path/to/after.jpg"
+  alt="Comparison"
+/>
+```
+
+### 9. YouTube Embed
+**Use Case:** Embedding video tutorials or demos directly into the post.
+
+<YouTube id="dQw4w9WgXcQ" title="Rick Roll" />
+
+```tsx
+<YouTube id="dQw4w9WgXcQ" title="Video Title" />
+```
+
+### 10. CodeSandbox
+**Use Case:** Embedding live code environments for complex examples.
+
+<CodeSandbox id="react-new" title="React Playground" />
+
+```tsx
+<CodeSandbox id="sandbox-id" title="Demo Title" />
+```
+
+## Conclusion
+
+These components are designed to help you tell better stories. Use them to break up walls of text, provide clear examples, and engage your readers. Happy blogging!

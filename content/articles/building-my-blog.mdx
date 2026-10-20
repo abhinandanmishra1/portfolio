@@ -1,0 +1,244 @@
+---
+title: "How I Rebuilt My Blog with Next.js, MDX, and Hashnode Integration"
+brief: "The story of migrating my blog to Next.js App Router, adding full MDX support, and combining Hashnode articles into a single unified platform."
+publishedAt: "2025-12-01T18:00:00Z"
+readTimeInMinutes: 9
+tags:
+  - name: "Next.js"
+    slug: "nextjs"
+  - name: "MDX"
+    slug: "mdx"
+  - name: "React"
+    slug: "react"
+coverImage:
+  url: "https://abhicdn.netlify.app/images/how-i-built-my-blog-with-mdx-integration.png"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+For the last few days, my desk looked like a battleground — tabs everywhere, logs exploding, MDX yelling at me, and Next.js refusing to cooperate.  
+
+But today, as everything finally came together, it *felt worth it*.
+
+I migrated my entire blog from **Vite + React** to **Next.js App Router**, added **rich MDX support**, and integrated **Hashnode articles** into one unified platform.  
+
+It genuinely felt like building a product for myself — breaking things, fixing them, refactoring, rethinking, and ultimately enjoying the win.
+
+---
+
+## Why I Needed MDX (And Why Traditional Platforms Weren’t Enough)
+
+I’ve been writing on Hashnode for a long time — it’s great. But as I went deeper into system design and low-level concepts, I hit a wall.
+
+Some articles needed:
+
+- Embedded interactive demos  
+- Side-by-side comparisons  
+- Step-by-step tutorials  
+- Custom callouts  
+- File trees  
+- Multiple tabs for alternative approaches  
+- Rich explanations that feel like documentation  
+
+<Callout type="warning" title="The Limitation">
+Platforms like Hashnode or Medium don’t allow custom React components or MDX-like interactivity. You write markdown — and that's it.
+</Callout>
+
+That restriction started hurting my ability to **explain complex concepts clearly**.
+
+So I switched to MDX.
+
+And honestly? It felt like moving from a notebook to a full developer playground.
+
+---
+
+## Why MDX Was the Right Choice
+
+Here’s how MDX transformed my writing flow:
+
+<Steps>
+  <Step title="Freedom to Use React Components">
+    I can drop in a <code>&lt;Callout&gt;</code>, a <code>&lt;Demo&gt;</code>, or even my own custom UI directly inside the article — without hacks.
+  </Step>
+  <Step title="Better Technical Storytelling">
+    MDX lets me structure articles the way developers think — with steps, tabs, comparisons, and interactive snippets.
+  </Step>
+  <Step title="Perfect for Deep-Dive Content">
+    My system design and architecture explainers often need visuals, embedded diagrams, and complex examples. MDX fits that perfectly.
+  </Step>
+  <Step title="Complete Control Over Styling & Layout">
+    No more fitting my content into someone else’s theme. The blog now feels like *my* product.
+  </Step>
+</Steps>
+
+<Callout type="success" title="Finally">
+I can explain concepts exactly the way I want — richly, interactively, and without compromises.
+</Callout>
+
+---
+
+## The Migration: How I Moved from Vite + React to Next.js
+
+I didn’t just migrate the site — I rethought its architecture.
+
+Here’s a quick snapshot of how the migration unfolded:
+
+<Tabs defaultValue="vite">
+  <TabItem value="vite" label="Old Setup (Vite + React)">
+    - Manual routing  
+    - Limited SEO  
+    - No server components  
+    - No built-in MDX pipeline  
+    - Hard to fetch external content  
+  </TabItem>
+  <TabItem value="next" label="New Setup (Next.js)">
+    - App Router with file-based routing  
+    - Full SEO control  
+    - Server Components for cleaner data fetching  
+    - Seamless MDX support  
+    - API routes for Hashnode integration  
+  </TabItem>
+</Tabs>
+
+Migrating felt like switching from a tool to a **framework designed for content sites**.
+
+---
+
+## The New Folder Structure
+
+<FileTree>
+  <FileTreeItem name="app" type="folder" defaultOpen>
+    <FileTreeItem name="articles" type="folder" defaultOpen>
+      <FileTreeItem name="[slug]" type="folder" defaultOpen>
+        <FileTreeItem name="page.tsx" type="file" />
+      </FileTreeItem>
+    </FileTreeItem>
+    <FileTreeItem name="categories" type="folder" />
+    <FileTreeItem name="series" type="folder" />
+    <FileTreeItem name="page.tsx" type="file" />
+  </FileTreeItem>
+  <FileTreeItem name="components" type="folder" />
+  <FileTreeItem name="content" type="folder" defaultOpen>
+    <FileTreeItem name="building-my-blog.mdx" type="file" />
+    <FileTreeItem name="MDX_GUIDE.md" type="file" />
+  </FileTreeItem>
+</FileTree>
+
+This separation helped me maintain a clear boundary between:
+
+- UI (app router)
+- Content (MDX files)
+- Integrations (Hashnode fetching utilities)
+
+---
+
+## Bringing MDX to the Blog: The Real Game-Changer
+
+Introducing MDX into the blog wasn’t just a feature upgrade — it fundamentally changed how I could communicate ideas.  
+But the journey wasn’t smooth.
+
+<Callout type="warning" title="Confession">
+I underestimated MDX. It looked simple… until it wasn’t.
+</Callout>
+
+The initial setup felt like assembling Lego pieces from three different sets. Config files didn’t agree with each other, loaders complained, and even a missing plugin or wrong file extension caused unexpected failures. But once the pieces clicked together, MDX opened a completely new dimension.
+
+<Steps>
+  <Step title="Start With the Pipeline">
+    I defined a basic MDX pipeline that the App Router could understand — nothing fancy, just a clean extension-based setup.
+  </Step>
+  <Step title="Enhance It With Components">
+    Then I connected my custom components: <code>&lt;Callout&gt;</code>, <code>&lt;Steps&gt;</code>, <code>&lt;Tabs&gt;</code>, <code>&lt;Demo&gt;</code>, and others.  
+    This single step made the blog feel more like a developer playground than a static article renderer.
+  </Step>
+  <Step title="Optimize Rendering">
+    With RSC (React Server Components), the MDX pages became lighter, faster, and more maintainable.  
+    I could fetch metadata, inject components, and even preprocess content smoothly.
+  </Step>
+</Steps>
+
+Here’s a simplified example of how I mapped MDX components:
+
+```tsx filename="mdx-components.tsx"
+export const mdxComponents = {
+  Callout,
+  Steps,
+  Step,
+  Tabs,
+  TabItem,
+  Demo,
+  FileTree,
+};
+```
+
+<Callout type="success" title="Why This Matters"> MDX gave me the flexibility to express complex ideas — something traditional blogging platforms restrict heavily. </Callout>
+
+---
+
+## Bringing Hashnode Posts Into the Same Space
+
+Even after migrating, I didn’t want to abandon the dozens of articles I had already written on Hashnode. Instead, I wanted everything — MDX posts and Hashnode posts — to live together under one unified reading experience.
+
+Think of it like merging two libraries without changing the books inside.
+
+To achieve this, I set up a small server function that fetches my Hashnode publication using their GraphQL API. No heavy processing — just clean data, transformed into a format my blog understands.
+
+```ts filename="lib/hashnode.ts"
+export async function getHashnodePosts() {
+  const response = await fetch(HASHNODE_GRAPHQL_URL, {
+    method: "POST",
+    body: JSON.stringify({ query: HASHNODE_QUERY }),
+  });
+
+  const json = await response.json();
+  return json.data.publication.posts;
+}
+```
+
+Hashnode posts load dynamically and sit beside MDX posts in the same blog list.
+
+<Callout type="info" title="Important"> Since Hashnode returns structured HTML rather than MDX, I render these posts in a dedicated template to preserve formatting and styling. </Callout>
+
+---
+
+## A Small Demo (Because MDX Makes It Easy)
+
+<Demo title="Interactive Animation Demo">
+  <AnimatedBox />
+</Demo>
+
+This tiny example would’ve been very hard on any traditional blogging platform.
+
+---
+
+## Finally, It All Clicked Together
+
+After multiple resets, debugging loops, broken builds, and stubborn MDX errors… the blog is now:
+
+* 🚀 Powered by Next.js App Router
+* 🧩 Using MDX with rich components
+* 🔗 Integrated with Hashnode
+* 🧭 SEO-friendly
+* 🎨 Fully customizable
+* 🛠️ Structured like a real product
+
+<Callout type="success" title="Shipped!">
+This rebuild gave me a platform that reflects how I explain, teach, and think.
+</Callout>
+
+---
+
+## What’s Next?
+
+To continue improving the blog, I’m planning:
+
+* Full-text search
+* Reactions & comments
+* AI summaries for each post
+* A reading progress bar
+* Code playgrounds via Sandpack
+
+And of course — more long-form System Design and deep technical articles.
+
+Thanks for reading — and welcome to the new, rebuilt version of my blog.

@@ -1,0 +1,73 @@
+---
+title: "Understanding Databases for System Design: ACID & Isolation Levels"
+brief: "A deep dive into transaction isolation levels, concurrency anomalies (dirty reads, non-repeatable reads, phantom reads, write skew), and how PostgreSQL and MySQL implement them."
+publishedAt: "2025-10-20T10:00:00Z"
+readTimeInMinutes: 11
+tags:
+  - name: "Databases"
+    slug: "databases"
+  - name: "System Design"
+    slug: "system-design"
+  - name: "PostgreSQL"
+    slug: "postgresql"
+series:
+  name: "System Design"
+  slug: "system-design"
+coverImage:
+  url: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200&q=80"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+Most engineers learn the classic textbook definition of ACID transactions in relational databases. But in high-concurrency production systems, running all transactions with serializable isolation destroys throughput. Understanding the precise nuances of SQL isolation levels and the exact anomalies they permit is essential for any senior engineer.
+
+---
+
+## The Four ANSI SQL Isolation Levels
+
+ANSI SQL-92 defined four isolation levels in terms of three phenomena:
+
+1. **Read Uncommitted:** Transactions can see uncommitted changes from concurrent transactions.
+   - *Anomaly allowed:* **Dirty Read** (reading data that gets rolled back).
+2. **Read Committed:** Only committed changes are visible. Reads see snapshot taken at statement execution time.
+   - *Anomaly allowed:* **Non-repeatable Read** (reading a row twice within one transaction yields different values).
+3. **Repeatable Read:** Reads see a snapshot taken at transaction start time.
+   - *Anomaly allowed in ANSI definition:* **Phantom Read** (re-executing a range query reveals new rows inserted by another committed transaction).
+4. **Serializable:** Guaranteed execution equivalent to executing transactions sequentially one after another.
+
+---
+
+## The Flaw in the ANSI Standard: Write Skew
+
+In 1995, Hal Berenson, Jim Gray, and colleagues published *"A Critique of ANSI SQL Isolation Levels"*, proving that the ANSI definitions were incomplete.
+
+The most dangerous anomaly not covered by ANSI is **Write Skew**:
+
+<Callout type="warning" title="What is Write Skew?">
+Imagine an on-call rotation rule where at least one doctor must be on duty. Doctors Alice and Bob are both on call. Alice submits a request to go off duty; concurrently, Bob submits a request to go off duty. Under Repeatable Read / Snapshot Isolation, both transactions check the condition (`COUNT(*) >= 2`), see that 2 doctors are on duty, and both update their status to inactive. Result: zero doctors on call!
+</Callout>
+
+### How to Prevent Write Skew
+1. **Explicit Locking:** `SELECT FOR UPDATE` to lock the rows or use predicate locks.
+2. **Materialized Conflict:** Create a lock row representing the constraint.
+3. **Serializable Snapshot Isolation (SSI):** Available in modern PostgreSQL, SSI tracks read-write conflicts (SIREAD locks) and aborts conflicting transactions automatically.
+
+---
+
+## PostgreSQL vs MySQL InnoDB: Key Differences
+
+| Feature | PostgreSQL | MySQL InnoDB |
+|---|---|---|
+| **Default Isolation Level** | `Read Committed` | `Repeatable Read` |
+| **MVCC Implementation** | Append-only tuple versions in same table (vacuum required) | In-place update with Undo Log rollback segments |
+| **Phantom Read Protection** | Repeatable Read prevents phantom reads out of the box | Next-Key Locking (Record + Gap Locks) |
+| **Serializable Engine** | SSI (Serializable Snapshot Isolation) | Two-Phase Locking (2PL) on read locks |
+
+---
+
+## Practical Takeaways for System Designers
+
+1. Don't blindly use `Serializable` unless financial ledger invariants require it.
+2. For counter increments, use atomic SQL operations: `UPDATE balances SET amount = amount - 50 WHERE id = 1 AND amount >= 50;` instead of read-modify-write in application memory.
+3. Understand optimistic concurrency control using version numbers (`version = version + 1`) to scale high-read, low-conflict records.

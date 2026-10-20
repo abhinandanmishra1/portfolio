@@ -1,0 +1,108 @@
+---
+title: "System Design: A Battle-Tested Framework for Large-Scale Architectures"
+brief: "How to systematically decompose, design, and defend complex distributed system architectures from functional requirements to capacity planning, partitioning, and fault tolerance."
+publishedAt: "2025-11-15T10:00:00Z"
+readTimeInMinutes: 12
+tags:
+  - name: "System Design"
+    slug: "system-design"
+  - name: "Distributed Systems"
+    slug: "distributed-systems"
+  - name: "Architecture"
+    slug: "architecture"
+series:
+  name: "System Design"
+  slug: "system-design"
+coverImage:
+  url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+When tackling large-scale system design problems, the biggest mistake engineers make is jumping directly into drawing boxes: load balancers, caching layers, and microservices. Without clear bounds, this leads to disorganized solutions that collapse under scrutiny.
+
+In this deep dive, I break down the 4-step framework I rely on when designing high-throughput production systems.
+
+---
+
+## 1. Requirement Scoping & Functional Boundaries
+
+Before choosing databases or messaging queues, anchor the scope:
+
+1. **Functional Requirements:**
+   - What are the core user flows?
+   - What are the write vs read paths?
+   - What are the strict latency expectations (e.g. `p99 < 100ms`)?
+
+2. **Non-Functional Requirements:**
+   - **High Availability (HA) vs Strict Consistency:** Refer to the PACELC theorem.
+   - **Throughput:** Requests per second (RPS) peak vs average.
+   - **Durability:** Acceptable data loss window (RPO) and recovery time (RTO).
+
+<Callout type="info" title="The 80/20 Rule of System Design">
+Most systems are heavily read-skewed (often 100:1 read to write ratio). Optimizing the read path with aggressive multi-layer caching usually solves 80% of throughput bottlenecks.
+</Callout>
+
+---
+
+## 2. Quantitative Capacity Estimation
+
+Always write down back-of-the-envelope calculations:
+
+```text
+Daily Active Users (DAU): 50 Million
+Average reads per user / day: 20
+Total daily reads: 1 Billion reads / day
+Average RPS = 1,000,000,000 / 86,400 ≈ 11,574 RPS
+Peak RPS (2.5x multiplier) ≈ 29,000 RPS
+
+Storage Calculation:
+Average metadata payload per record: 1.5 KB
+New records generated per day: 10 Million
+Daily storage growth = 10,000,000 * 1.5 KB = 15 GB / day
+Annual storage growth ≈ 5.5 TB / year (excluding replication factor)
+```
+
+With 29k peak read RPS, a single PostgreSQL instance cannot serve raw disk reads. We will need:
+- Connection pooling (PgBouncer)
+- Read replicas with asynchronous replication
+- In-memory distributed cache (Redis cluster with LRU eviction)
+
+---
+
+## 3. High-Level Architecture Design
+
+Here is the decoupled tier architecture:
+
+<Steps>
+### Step 1: Ingress Layer
+DNS routing (Cloudflare/Route 53) distributing traffic across multi-region API Gateways with SSL termination, rate-limiting, and DDoS shielding.
+
+### Step 2: Stateless Application Tier
+Horizontal auto-scaling containerized pods (Kubernetes / ECS). Because servers store zero session state, any instance can handle any incoming request.
+
+### Step 3: Event-Driven Asynchronous Pipeline
+Kafka topic clusters handling decoupled events (order placement, notifications, search indexing, audit logs).
+
+### Step 4: Polyglot Persistence
+- PostgreSQL for ACID transactions and relational integrity.
+- Redis for hot session states, idempotency tokens, and rate limits.
+- S3 / Blob storage for immutable binary payloads with CDN edge caching.
+</Steps>
+
+---
+
+## 4. Addressing Single Points of Failure (SPOF)
+
+A resilient system must assume failure is inevitable:
+
+1. **Circuit Breaking:** Use resilient circuit breakers (e.g., Netflix Hystrix or Resilience4j) to prevent cascading microservice outages.
+2. **Idempotency Keys:** Ensure every mutating write accepts a unique client-generated UUID idempotency key stored in Redis with an atomic `SET NX EX`.
+3. **Graceful Degradation:** When analytics or recommendation engines slow down, fall back to cached static data or popular items without blocking primary checkout flows.
+
+---
+
+## Wrapping Up
+
+System design is not about using every shiny technology. It is about **making deliberate trade-offs** under explicit constraints. Document your assumptions, defend your data access patterns, and always plan for failure at scale.

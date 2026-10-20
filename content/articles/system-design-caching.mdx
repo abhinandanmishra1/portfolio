@@ -1,0 +1,90 @@
+---
+title: "System Design: All About Caching & Cache Stampede Mitigation"
+brief: "Comprehensive analysis of caching strategies (Cache-Aside, Write-Through, Write-Behind), eviction policies, multi-tier architectures, and mitigating cache stampede with probabilistic early expiration."
+publishedAt: "2025-09-10T10:00:00Z"
+readTimeInMinutes: 10
+tags:
+  - name: "Caching"
+    slug: "caching"
+  - name: "System Design"
+    slug: "system-design"
+  - name: "Redis"
+    slug: "redis"
+series:
+  name: "System Design"
+  slug: "system-design"
+coverImage:
+  url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+There are only two hard things in Computer Science: cache invalidation and naming things. In distributed web applications, improper caching leads to stale reads, database crashes, and cascading system outages.
+
+In this article, we dissect the core caching topologies and how to design fail-safe cache tiers.
+
+---
+
+## The Three Fundamental Caching Strategies
+
+### 1. Cache-Aside (Lazy Loading)
+The application code orchestrates all cache queries:
+1. Application reads from cache.
+2. If hit: return data.
+3. If miss: fetch from database, write to cache with TTL, and return.
+
+*Pros:* Resilient against cache failure (app queries DB directly); memory-efficient because only requested keys are stored.  
+*Cons:* Three network round trips on cache miss; potential stale data if mutating writes don't invalidate cache.
+
+### 2. Write-Through Cache
+The application writes data exclusively to the cache; the cache synchronously writes to the underlying datastore before confirming success.
+
+*Pros:* High read freshness; zero stale data between cache and DB.  
+*Cons:* Write latency penalty (two writes); higher cache churn if written keys are rarely read.
+
+### 3. Write-Behind (Write-Back) Cache
+The application writes to cache, which immediately acknowledges success. An asynchronous background worker batches writes to the database.
+
+*Pros:* Extremely high write throughput and minimal write latency.  
+*Cons:* Risk of permanent data loss if cache nodes crash before async flushing completes.
+
+---
+
+## The Cache Stampede Problem (Thundering Herd)
+
+When a hot key (e.g. homepage banner or flash sale inventory) expires during high load, thousands of concurrent requests miss the cache simultaneously and slam the primary database.
+
+```text
+[Hot Key Expires]
+       │
+   ┌───┴────────┬─────────────┬───────────┐
+Req 1        Req 2         Req 3        Req 4000
+   │            │             │            │
+  (Cache Miss) (Cache Miss)  (Cache Miss) (Cache Miss)
+   │            │             │            │
+   ▼            ▼             ▼            ▼
+ ──────────────────────────────────────────────
+         PRIMARY DATABASE CRASHES (100% CPU)
+```
+
+### Mitigation 1: Mutex Lock (Singleflight)
+Only one worker acquires a distributed Redis lock to rebuild the cache key. All other requests wait or return slightly stale data.
+
+### Mitigation 2: Probabilistic Early Expiration (XFetch Algorithm)
+Instead of waiting for the key to expire at `TTL = 0`, compute a probabilistic threshold before expiration:
+
+```text
+delta - beta * ln(random()) * compute_time > time_to_expire
+```
+
+If the probabilistic check passes, the worker asynchronously triggers a background refresh before the key actually expires, guaranteeing zero user-facing cache misses!
+
+---
+
+## Multi-Tier Caching Topology
+
+In production, rely on multiple caching tiers:
+1. **L1 Local Memory Cache:** Fast in-process LRU cache (e.g. Go `sync.Map` or Node.js `lru-cache`) — sub-millisecond latency.
+2. **L2 Distributed Cache:** Redis Cluster / Memcached — shared across instances with partitioned key distribution.
+3. **L3 Edge CDN:** Cloudflare / Fastly for static assets, SSR HTML, and immutable API responses.

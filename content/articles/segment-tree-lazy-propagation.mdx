@@ -1,0 +1,147 @@
+---
+title: "Segment Tree: Range Updates with Lazy Propagation"
+brief: "Mastering interval queries and range modifications in O(log N) using delayed push-down evaluation in Segment Trees for competitive programming."
+publishedAt: "2025-08-25T10:00:00Z"
+readTimeInMinutes: 8
+tags:
+  - name: "Segment Tree"
+    slug: "segment-tree"
+  - name: "DSA"
+    slug: "dsa"
+  - name: "Algorithms"
+    slug: "algorithms"
+series:
+  name: "Segment Trees"
+  slug: "segment-trees"
+coverImage:
+  url: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+A standard Segment Tree allows point updates in $O(\log N)$ and range queries in $O(\log N)$. However, when we need to update an entire range $[L, R]$ with an increment or replacement, doing point updates on each index degenerates to $O(N \log N)$.
+
+**Lazy Propagation** solves this by postponing updates to child nodes until those children are explicitly queried.
+
+---
+
+## The Core Concept of Laziness
+
+When an update completely covers a node's segment interval, we:
+1. Update the current node's value immediately.
+2. Record the pending update in a `lazy[]` array for this node.
+3. **Return immediately without traversing into its children.**
+
+Only when a future query or update requires descending into this node's children do we "push down" the pending operation to its left and right children.
+
+---
+
+## Complete TypeScript Implementation
+
+```typescript
+export class SegmentTreeLazy {
+  private tree: number[];
+  private lazy: number[];
+  private n: number;
+
+  constructor(nums: number[]) {
+    this.n = nums.length;
+    this.tree = new Array(4 * this.n).fill(0);
+    this.lazy = new Array(4 * this.n).fill(0);
+    this.build(nums, 1, 0, this.n - 1);
+  }
+
+  private build(nums: number[], node: number, start: number, end: number): void {
+    if (start === end) {
+      this.tree[node] = nums[start];
+      return;
+    }
+    const mid = (start + end) >> 1;
+    this.build(nums, 2 * node, start, mid);
+    this.build(nums, 2 * node + 1, mid + 1, end);
+    this.tree[node] = this.tree[2 * node] + this.tree[2 * node + 1];
+  }
+
+  private pushDown(node: number, start: number, end: number): void {
+    if (this.lazy[node] !== 0) {
+      const mid = (start + end) >> 1;
+      const val = this.lazy[node];
+
+      // Apply to left child
+      this.lazy[2 * node] += val;
+      this.tree[2 * node] += val * (mid - start + 1);
+
+      // Apply to right child
+      this.lazy[2 * node + 1] += val;
+      this.tree[2 * node + 1] += val * (end - mid);
+
+      // Clear current lazy flag
+      this.lazy[node] = 0;
+    }
+  }
+
+  public updateRange(l: number, r: number, val: number): void {
+    this.updateRangeInternal(1, 0, this.n - 1, l, r, val);
+  }
+
+  private updateRangeInternal(
+    node: number,
+    start: number,
+    end: number,
+    l: number,
+    r: number,
+    val: number
+  ): void {
+    if (l <= start && end <= r) {
+      this.tree[node] += val * (end - start + 1);
+      this.lazy[node] += val;
+      return;
+    }
+
+    this.pushDown(node, start, end);
+    const mid = (start + end) >> 1;
+
+    if (l <= mid) this.updateRangeInternal(2 * node, start, mid, l, r, val);
+    if (r > mid) this.updateRangeInternal(2 * node + 1, mid + 1, end, l, r, val);
+
+    this.tree[node] = this.tree[2 * node] + this.tree[2 * node + 1];
+  }
+
+  public queryRange(l: number, r: number): number {
+    return this.queryRangeInternal(1, 0, this.n - 1, l, r);
+  }
+
+  private queryRangeInternal(
+    node: number,
+    start: number,
+    end: number,
+    l: number,
+    r: number
+  ): number {
+    if (l <= start && end <= r) {
+      return this.tree[node];
+    }
+
+    this.pushDown(node, start, end);
+    const mid = (start + end) >> 1;
+    let sum = 0;
+
+    if (l <= mid) sum += this.queryRangeInternal(2 * node, start, mid, l, r);
+    if (r > mid) sum += this.queryRangeInternal(2 * node + 1, mid + 1, end, l, r);
+
+    return sum;
+  }
+}
+```
+
+---
+
+## Complexity Analysis
+
+- **Tree Construction:** `O(N)`
+- **Range Update with Lazy:** `O(log N)`
+- **Range Query with Lazy:** `O(log N)`
+- **Space Complexity:** `O(N)` (typically `4N` memory cells)
+
+By combining lazy propagation with coordinate compression, you can scale interval queries to ranges up to `10^9` with lightning speed.

@@ -1,0 +1,87 @@
+---
+title: "React Hooks Deep Dive: Under the Hood of Fiber & State Queues"
+brief: "An architectural exploration of React Fiber, hook linked lists, closure traps, and why order matters in React's internal reconciler."
+publishedAt: "2025-07-10T10:00:00Z"
+readTimeInMinutes: 9
+tags:
+  - name: "React"
+    slug: "react"
+  - name: "JavaScript"
+    slug: "javascript"
+  - name: "Frontend"
+    slug: "frontend"
+series:
+  name: "React Mastery"
+  slug: "react-mastery"
+coverImage:
+  url: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80"
+author:
+  name: "Abhinandan Mishra"
+  profilePicture: "https://github.com/abhinandanmishra1.png"
+---
+
+Why can't React hooks be called inside loops or conditional statements?
+
+Most developers know the rule: *"Only call hooks at the top level."* But understanding **why** this rule exists requires pulling back the curtain on React's internal Fiber node architecture.
+
+---
+
+## The Hook Linked List inside Fiber
+
+In React, every functional component instance is represented by a `Fiber` node. A Fiber contains a property called `memoizedState`:
+
+```text
+FiberNode
+  └── memoizedState (Hook 1: useState)
+        └── next (Hook 2: useEffect)
+              └── next (Hook 3: useMemo)
+                    └── next (null)
+```
+
+Each hook is simply a node in a singly linked list!
+
+When a component renders for the first time (`mountWorkInProgressHook`), React creates a new hook object and appends it to the list. On subsequent renders (`updateWorkInProgressHook`), React traverses the existing linked list in strict index order.
+
+If a hook is placed inside an `if` statement that only evaluates conditionally, the list pointer desynchronizes:
+
+```text
+Render 1:
+  Index 0 -> useState (count)
+  Index 1 -> useEffect (fetch)
+  Index 2 -> useState (name)
+
+Render 2 (condition skipped):
+  Index 0 -> useState (count)
+  Index 1 -> useState (name) <-- React applies state from Index 1 (fetch)! BUG!
+```
+
+---
+
+## Avoiding Stale Closures in `useEffect` and `useCallback`
+
+JavaScript closures capture variables from their lexical scope at declaration time. When a hook's dependency array is omitted or incomplete, the effect closes over stale state variables:
+
+```typescript
+// Antipattern: Stale closure
+useEffect(() => {
+  const timer = setInterval(() => {
+    // 'count' is forever locked to the initial value (0)
+    setCount(count + 1);
+  }, 1000);
+  return () => clearInterval(timer);
+}, []); // Missing count dependency
+
+// Correct solution: Functional update
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount(prev => prev + 1); // Reads fresh state atomically
+  }, 1000);
+  return () => clearInterval(timer);
+}, []);
+```
+
+---
+
+## Summary
+
+React's hook system is remarkably elegant: a simple pointer chain on Fiber nodes that achieves declarative UI updates without class boilerplate. By understanding the linked list under the hood, you will write cleaner code, avoid tricky closure traps, and build predictable React applications.
