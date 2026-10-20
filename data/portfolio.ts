@@ -97,7 +97,6 @@ export const navLinks: NavLink[] = [
   { label: 'Articles', href: '/articles' },
   { label: 'Research', href: '/research' },
   { label: 'Honors', href: '/honors' },
-  { label: 'Admin', href: '/admin' },
 ];
 
 export const heroBio: BioSegment[][] = [
