@@ -115,16 +115,68 @@ export function FileTreeItem({
 }
 
 // --- YouTube Embed ---
-export function YouTube({ id, title }: { id: string; title?: string }) {
+export function YouTube({
+  id,
+  url,
+  title = 'Demonstration Video',
+}: {
+  id?: string;
+  url?: string;
+  title?: string;
+}) {
+  let videoId = id;
+  if (!videoId && url) {
+    const match =
+      url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/) ||
+      url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    if (match) {
+      videoId = match[1];
+    }
+  }
+
+  if (!videoId) {
+    return (
+      <div className="my-6 rounded-xl border border-border bg-card/40 p-4 text-center font-mono text-xs text-muted-foreground">
+        Unable to parse YouTube video.{' '}
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline ml-1"
+          >
+            Watch directly on YouTube ↗
+          </a>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="my-6 aspect-video overflow-hidden rounded-xl border border-border">
-      <iframe
-        src={`https://www.youtube.com/embed/${id}`}
-        title={title || 'YouTube video'}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="h-full w-full border-0"
-      />
+    <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
+      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+          {title}
+        </span>
+        <a
+          href={url || `https://www.youtube.com/watch?v=${videoId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+        >
+          Watch on YouTube ↗
+        </a>
+      </div>
+      <div className="relative aspect-video w-full">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="h-full w-full border-0"
+        />
+      </div>
     </div>
   );
 }
@@ -162,16 +214,105 @@ export function ImageComparison({
 }
 
 // --- CodeSandbox ---
-export function CodeSandbox({ id, title }: { id: string; title?: string }) {
+export function CodeSandbox({
+  id,
+  url,
+  title = 'Interactive CodeSandbox',
+}: {
+  id?: string;
+  url?: string;
+  title?: string;
+}) {
+  let embedUrl = '';
+  let externalUrl = url || '';
+
+  if (url) {
+    externalUrl = url;
+    if (url.includes('codesandbox.io/s/')) {
+      embedUrl = url.replace('codesandbox.io/s/', 'codesandbox.io/embed/');
+    } else if (url.includes('codesandbox.io/p/sandbox/')) {
+      embedUrl = url.replace('codesandbox.io/p/sandbox/', 'codesandbox.io/embed/');
+    } else if (url.includes('codesandbox.io/embed/')) {
+      embedUrl = url;
+    } else {
+      embedUrl = url;
+    }
+
+    if (!embedUrl.includes('fontsize=')) {
+      const sep = embedUrl.includes('?') ? '&' : '?';
+      embedUrl = `${embedUrl}${sep}fontsize=13&hidenavigation=1&theme=dark`;
+    }
+  } else if (id) {
+    externalUrl = `https://codesandbox.io/s/${id}`;
+    embedUrl = `https://codesandbox.io/embed/${id}?fontsize=13&hidenavigation=1&theme=dark`;
+  }
+
   return (
-    <div className="my-6 h-[500px] overflow-hidden rounded-xl border border-border">
-      <iframe
-        src={`https://codesandbox.io/embed/${id}?fontsize=14&hidenavigation=1&theme=dark`}
-        title={title || 'CodeSandbox'}
-        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-        className="h-full w-full border-0"
-      />
+    <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
+      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 rounded-full bg-blue-500" />
+          {title}
+        </span>
+        {externalUrl && (
+          <a
+            href={externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+          >
+            Open in CodeSandbox ↗
+          </a>
+        )}
+      </div>
+      <div className="h-[520px] w-full">
+        <iframe
+          src={embedUrl}
+          title={title}
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          className="h-full w-full border-0"
+        />
+      </div>
+    </div>
+  );
+}
+
+// --- Replit Embed ---
+export function Replit({
+  url,
+  title = 'Interactive Replit Sandbox',
+}: {
+  url: string;
+  title?: string;
+}) {
+  const embedUrl = url.includes('?') ? `${url}&embed=true` : `${url}?embed=true`;
+
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
+      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 rounded-full bg-amber-500" />
+          {title}
+        </span>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+        >
+          Open in Replit ↗
+        </a>
+      </div>
+      <div className="h-[520px] w-full">
+        <iframe
+          src={embedUrl}
+          title={title}
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          className="h-full w-full border-0"
+        />
+      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   YouTube,
   ImageComparison,
   CodeSandbox,
+  Replit,
   Demo,
   AnimatedBox,
 } from './interactive-elements';
@@ -200,6 +201,7 @@ export const mdxComponents = {
   YouTube,
   ImageComparison,
   CodeSandbox,
+  Replit,
   Demo,
   AnimatedBox,
 };
