@@ -55,7 +55,7 @@ export function DualStream() {
               <li key={article.title}>
                 <Link
                   href={article.href}
-                  className="group flex items-baseline gap-4 py-4"
+                  className="group flex items-baseline gap-3 sm:gap-4 py-3.5 sm:py-4"
                 >
                   <span className="shrink-0 font-mono text-[11.5px] text-muted-foreground">
                     {article.date}

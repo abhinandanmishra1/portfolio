@@ -58,7 +58,7 @@ export default async function TagPage({ params }: TagPageProps) {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <div className="mb-10">
           <Link
             href="/articles"
@@ -73,7 +73,7 @@ export default async function TagPage({ params }: TagPageProps) {
             <span>Tag Archive</span>
           </div>
 
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             #{tagInfo.name}
           </h1>
 

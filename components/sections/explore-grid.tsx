@@ -14,7 +14,7 @@ export function ExploreGrid() {
             key={card.label}
             href={card.target}
             className={cn(
-              'group relative flex flex-col gap-3 bg-background p-6 transition-colors hover:bg-muted/40',
+              'group relative flex flex-col gap-3 bg-background p-5 sm:p-6 transition-colors hover:bg-muted/40',
             )}
           >
             <div className="flex items-center justify-between">

@@ -26,7 +26,7 @@ export default function CategoriesIndexPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <div className="mb-12">
           <Link
             href="/articles"
@@ -41,7 +41,7 @@ export default function CategoriesIndexPage() {
             <span>Curated Tracks</span>
           </div>
 
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             Knowledge Tracks & Categories
           </h1>
           <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
@@ -59,7 +59,7 @@ export default function CategoriesIndexPage() {
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="group flex flex-col justify-between rounded-2xl border border-border bg-card/40 p-6 transition-all hover:border-blue-500/40 hover:bg-card/70"
+                className="group flex flex-col justify-between rounded-2xl border border-border bg-card/40 p-5 sm:p-6 transition-all hover:border-blue-500/40 hover:bg-card/70"
               >
                 <div>
                   <div className="flex items-center justify-between">

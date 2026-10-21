@@ -20,9 +20,9 @@ export function Tabs({
   const [activeTab, setActiveTab] = React.useState(defaultValue || tabItems[0]?.props?.value);
 
   return (
-    <div className="my-6 rounded-xl border border-border bg-card/40 p-4">
+    <div className="my-6 rounded-xl border border-border bg-card/40 p-3 sm:p-4">
       <div className="border-b border-border">
-        <nav className="-mb-px flex space-x-6 overflow-x-auto">
+        <nav className="-mb-px flex space-x-4 sm:space-x-6 overflow-x-auto">
           {tabItems.map((tab) => {
             const isSelected = activeTab === tab.props.value;
             return (
@@ -154,16 +154,16 @@ export function YouTube({
 
   return (
     <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
-      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5 font-medium text-foreground">
-          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
-          {title}
+      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/30 px-3 sm:px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex min-w-0 items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-red-500" />
+          <span className="truncate">{title}</span>
         </span>
         <a
           href={url || `https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+          className="shrink-0 text-blue-600 dark:text-blue-400 hover:underline transition-colors"
         >
           Watch on YouTube ↗
         </a>
@@ -249,23 +249,23 @@ export function CodeSandbox({
 
   return (
     <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
-      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5 font-medium text-foreground">
-          <span className="inline-block h-2 w-2 rounded-full bg-blue-500" />
-          {title}
+      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/30 px-3 sm:px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex min-w-0 items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+          <span className="truncate">{title}</span>
         </span>
         {externalUrl && (
           <a
             href={externalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+            className="shrink-0 text-blue-600 dark:text-blue-400 hover:underline transition-colors"
           >
-            Open in CodeSandbox ↗
+            Open Sandbox ↗
           </a>
         )}
       </div>
-      <div className="h-[520px] w-full">
+      <div className="h-[360px] sm:h-[520px] w-full">
         <iframe
           src={embedUrl}
           title={title}
@@ -290,21 +290,21 @@ export function Replit({
 
   return (
     <div className="my-8 overflow-hidden rounded-2xl border border-border/80 bg-card/60 shadow-sm">
-      <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5 font-medium text-foreground">
-          <span className="inline-block h-2 w-2 rounded-full bg-amber-500" />
-          {title}
+      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/30 px-3 sm:px-4 py-2 font-mono text-xs text-muted-foreground">
+        <span className="flex min-w-0 items-center gap-1.5 font-medium text-foreground">
+          <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-amber-500" />
+          <span className="truncate">{title}</span>
         </span>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+          className="shrink-0 text-blue-600 dark:text-blue-400 hover:underline transition-colors"
         >
-          Open in Replit ↗
+          Open Replit ↗
         </a>
       </div>
-      <div className="h-[520px] w-full">
+      <div className="h-[360px] sm:h-[520px] w-full">
         <iframe
           src={embedUrl}
           title={title}

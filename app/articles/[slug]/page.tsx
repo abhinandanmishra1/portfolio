@@ -127,7 +127,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-3xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/articles"
@@ -150,7 +150,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
 
         <header className="mb-10 border-b border-border/70 pb-8">
-          <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1">
               <Calendar className="h-3.5 w-3.5" />
               <time dateTime={article.publishedAt}>{article.date}</time>
@@ -181,7 +181,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             )}
           </div>
 
-          <h1 className="mt-4 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl sm:leading-[1.2]">
+          <h1 className="mt-4 font-serif text-2xl italic font-normal tracking-tight text-foreground break-words sm:text-4xl sm:leading-[1.2]">
             {article.title}
           </h1>
 
@@ -278,7 +278,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         )}
 
         <footer className="mt-10 border-t border-border/60 pt-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <Link
               href="/articles"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"

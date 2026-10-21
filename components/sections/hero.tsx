@@ -35,11 +35,11 @@ export function Hero() {
             {portfolio.availableFor}
           </p>
 
-          <h1 className="font-serif text-4xl italic font-normal leading-tight tracking-tight text-balance sm:text-5xl">
+          <h1 className="font-serif text-3xl italic font-normal leading-tight tracking-tight text-balance sm:text-5xl">
             Hey, I am Abhinandan
           </h1>
 
-          <p className="mt-4 font-serif text-lg italic font-normal leading-snug text-blue-600 dark:text-blue-400 text-balance sm:text-xl">
+          <p className="mt-4 font-serif text-base italic font-normal leading-snug text-blue-600 dark:text-blue-400 text-balance sm:text-xl">
             systems, distributed platforms, and developer tools. always building.
           </p>
 
@@ -70,15 +70,15 @@ export function Hero() {
             {socialLinks.map((social) => {
               const Icon = iconMap[social.icon];
               return (
-                <li key={social.label}>
+                <li key={social.label} className="max-w-full">
                   <a
                     href={social.href}
                     target={social.icon === 'mail' ? undefined : '_blank'}
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-3 py-1.5 text-[12.5px] font-medium text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
+                    className="group inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-card/40 px-3 py-1.5 text-[12.5px] font-medium text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
                   >
-                    <Icon className="h-3.5 w-3.5" />
-                    <span>{social.handle}</span>
+                    <Icon className="h-3.5 w-3.5 shrink-0" />
+                    <span className="truncate">{social.handle}</span>
                   </a>
                 </li>
               );
@@ -87,14 +87,14 @@ export function Hero() {
         </div>
 
         <div className="sm:col-span-4">
-          <div className="relative mx-auto aspect-square w-44 sm:w-full sm:max-w-[260px]">
+          <div className="relative mx-auto aspect-square w-40 sm:w-full sm:max-w-[260px]">
             <div className="absolute inset-0 rounded-2xl ring-1 ring-border transition-shadow" />
             <Image
               src={portfolio.avatar}
               alt={`${portfolio.name} portrait`}
               fill
               priority
-              sizes="(max-width: 640px) 176px, 260px"
+              sizes="(max-width: 640px) 160px, 260px"
               className="rounded-2xl border border-border object-cover"
             />
           </div>
@@ -109,7 +109,7 @@ export function Hero() {
 
 export function HeroMeta() {
   return (
-    <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border/70 py-5 font-mono text-xs text-muted-foreground">
+    <div className="mt-12 sm:mt-14 flex flex-wrap items-center gap-x-4 sm:gap-x-8 gap-y-2.5 sm:gap-y-3 border-y border-border/70 py-4 sm:py-5 font-mono text-xs text-muted-foreground">
       <span>SDE-II @ Project44</span>
       <span className="hidden h-3 w-px bg-border sm:block" />
       <span>Co-Founder · SDE Forge</span>

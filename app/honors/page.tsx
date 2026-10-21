@@ -28,7 +28,7 @@ export default function HonorsPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         {/* Page Header */}
         <div className="mb-12">
           <Link
@@ -42,7 +42,7 @@ export default function HonorsPage() {
             <Trophy className="h-3.5 w-3.5" />
             <span>Honors & Recognitions</span>
           </div>
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             Awards, Hackathon Victories & Algorithmic Rankings
           </h1>
           <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
@@ -70,7 +70,7 @@ export default function HonorsPage() {
                 key={item.id}
                 className="group overflow-hidden rounded-2xl border border-border bg-card/40 transition-colors hover:border-border/90"
               >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-5 sm:p-8">
                   {/* Visual Preview */}
                   <div className="md:col-span-5 flex flex-col justify-between">
                     <a
@@ -192,7 +192,7 @@ export default function HonorsPage() {
             {honors.map((honor) => (
               <div
                 key={honor.contest}
-                className="rounded-2xl border border-border bg-card/40 p-6 transition-colors hover:border-border/90"
+                className="rounded-2xl border border-border bg-card/40 p-5 sm:p-6 transition-colors hover:border-border/90"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-2">
@@ -220,7 +220,7 @@ export default function HonorsPage() {
         </section>
 
         {/* SECTION 3: ALGORITHMIC FOUNDATION */}
-        <section className="rounded-2xl border border-border bg-card/30 p-6 sm:p-8">
+        <section className="rounded-2xl border border-border bg-card/30 p-5 sm:p-8">
           <div className="flex items-center gap-3">
             <Code2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             <h3 className="font-serif text-xl italic font-medium text-foreground">

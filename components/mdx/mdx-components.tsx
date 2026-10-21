@@ -21,7 +21,7 @@ export const mdxComponents = {
   h1: ({ children, id, ...props }: React.ComponentPropsWithoutRef<'h1'>) => (
     <h1
       id={id}
-      className="mb-6 mt-10 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl"
+      className="mb-6 mt-10 font-serif text-2xl italic font-normal tracking-tight text-foreground break-words sm:text-4xl"
       {...props}
     >
       {children}
@@ -30,7 +30,7 @@ export const mdxComponents = {
   h2: ({ children, id, ...props }: React.ComponentPropsWithoutRef<'h2'>) => (
     <h2
       id={id}
-      className="mb-4 mt-8 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-3xl"
+      className="mb-4 mt-8 font-serif text-xl italic font-normal tracking-tight text-foreground break-words sm:text-3xl"
       {...props}
     >
       {children}
@@ -39,7 +39,7 @@ export const mdxComponents = {
   h3: ({ children, id, ...props }: React.ComponentPropsWithoutRef<'h3'>) => (
     <h3
       id={id}
-      className="mb-3 mt-6 font-serif text-xl italic font-normal tracking-tight text-foreground sm:text-2xl"
+      className="mb-3 mt-6 font-serif text-lg italic font-normal tracking-tight text-foreground break-words sm:text-2xl"
       {...props}
     >
       {children}
@@ -48,7 +48,7 @@ export const mdxComponents = {
   h4: ({ children, id, ...props }: React.ComponentPropsWithoutRef<'h4'>) => (
     <h4
       id={id}
-      className="mb-2 mt-5 font-serif text-lg font-medium text-foreground"
+      className="mb-2 mt-5 font-serif text-base font-medium text-foreground break-words sm:text-lg"
       {...props}
     >
       {children}
@@ -101,7 +101,7 @@ export const mdxComponents = {
   ),
   blockquote: ({ children, ...props }: React.ComponentPropsWithoutRef<'blockquote'>) => (
     <blockquote
-      className="my-6 border-l-2 border-blue-500/50 bg-muted/20 py-2 pl-4 italic text-muted-foreground"
+      className="my-6 border-l-2 border-blue-500/50 bg-muted/20 py-2 pl-3 sm:pl-4 italic text-muted-foreground"
       {...props}
     >
       {children}
@@ -112,23 +112,23 @@ export const mdxComponents = {
   ),
   table: ({ children, ...props }: React.ComponentPropsWithoutRef<'table'>) => (
     <div className="my-6 overflow-x-auto rounded-xl border border-border">
-      <table className="min-w-full divide-y divide-border text-sm" {...props}>
+      <table className="min-w-full divide-y divide-border text-xs sm:text-sm" {...props}>
         {children}
       </table>
     </div>
   ),
   thead: ({ children, ...props }: React.ComponentPropsWithoutRef<'thead'>) => (
-    <thead className="bg-muted/40 font-mono text-xs uppercase tracking-wider text-muted-foreground" {...props}>
+    <thead className="bg-muted/40 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-muted-foreground" {...props}>
       {children}
     </thead>
   ),
   th: ({ children, ...props }: React.ComponentPropsWithoutRef<'th'>) => (
-    <th className="px-4 py-3 text-left font-medium" {...props}>
+    <th className="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-medium" {...props}>
       {children}
     </th>
   ),
   td: ({ children, ...props }: React.ComponentPropsWithoutRef<'td'>) => (
-    <td className="px-4 py-3 text-foreground/80 border-t border-border/50" {...props}>
+    <td className="px-3 sm:px-4 py-2.5 sm:py-3 text-foreground/80 border-t border-border/50" {...props}>
       {children}
     </td>
   ),
@@ -137,7 +137,7 @@ export const mdxComponents = {
     if (!className) {
       return (
         <code
-          className="rounded border border-border/70 bg-muted/50 px-1.5 py-0.5 font-mono text-[13px] text-foreground"
+          className="rounded border border-border/70 bg-muted/50 px-1.5 py-0.5 font-mono text-[12.5px] sm:text-[13px] text-foreground break-words [word-break:break-word]"
           {...props}
         >
           {children}

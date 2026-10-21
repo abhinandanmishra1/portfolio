@@ -102,7 +102,7 @@ export default async function ResearchDetailPage({ params }: ResearchPageProps) 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-3xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <Link
           href="/research"
           className="group mb-8 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -112,7 +112,7 @@ export default async function ResearchDetailPage({ params }: ResearchPageProps) 
         </Link>
 
         <header className="mb-10 border-b border-border/70 pb-8">
-          <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-medium">
               <BookMarked className="h-3.5 w-3.5" />
               <span>{paper.tag}</span>
@@ -129,7 +129,7 @@ export default async function ResearchDetailPage({ params }: ResearchPageProps) 
             </span>
           </div>
 
-          <h1 className="mt-4 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl sm:leading-[1.2]">
+          <h1 className="mt-4 font-serif text-2xl italic font-normal tracking-tight text-foreground break-words sm:text-4xl sm:leading-[1.2]">
             {paper.title}
           </h1>
 

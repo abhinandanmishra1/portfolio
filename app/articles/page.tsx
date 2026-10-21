@@ -28,7 +28,7 @@ export default function ArticlesPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <div className="mb-10">
           <Link
             href="/"
@@ -41,7 +41,7 @@ export default function ArticlesPage() {
             <BookOpen className="h-3.5 w-3.5" />
             <span>Technical Archive</span>
           </div>
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             Essays & System Design Deep Dives
           </h1>
           <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">

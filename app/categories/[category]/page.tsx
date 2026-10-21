@@ -78,7 +78,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         {/* Header Navigation */}
         <div className="mb-10">
           <Link
@@ -94,7 +94,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <span>Curated Learning Track</span>
           </div>
 
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             {category.name}
           </h1>
 

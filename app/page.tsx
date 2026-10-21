@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pb-10">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pb-10">
         <Hero />
         <HeroMeta />
         <ExploreGrid />

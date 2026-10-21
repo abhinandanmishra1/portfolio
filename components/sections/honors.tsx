@@ -7,7 +7,7 @@ export function Honors() {
       <SectionHeading index="05" title="Awards & contest honors" />
       <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
         {honors.map((honor) => (
-          <div key={honor.contest} className="bg-background p-5">
+          <div key={honor.contest} className="bg-background p-4 sm:p-5">
             <div className="flex items-baseline justify-between gap-3">
               <span className="text-[14px] font-medium text-foreground">
                 {honor.contest}

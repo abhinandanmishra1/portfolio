@@ -11,8 +11,8 @@ export function Footer({ className, maxWidth = '4xl' }: FooterProps) {
   const maxWClass = maxWidth === '3xl' ? 'max-w-3xl' : 'max-w-4xl';
 
   return (
-    <footer className={`mt-24 border-t border-border/70 ${className || ''}`}>
-      <div className={`mx-auto ${maxWClass} px-6 pt-10 pb-16`}>
+    <footer className={`mt-20 sm:mt-24 border-t border-border/70 ${className || ''}`}>
+      <div className={`mx-auto ${maxWClass} px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-16`}>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="font-serif text-base italic text-foreground">
@@ -49,7 +49,7 @@ export function Footer({ className, maxWidth = '4xl' }: FooterProps) {
           <p>Built with Next.js & Tailwind CSS</p>
           <a
             href={`mailto:${portfolio.email}`}
-            className="transition-colors hover:text-foreground"
+            className="break-all transition-colors hover:text-foreground sm:break-normal"
           >
             {portfolio.email}
           </a>

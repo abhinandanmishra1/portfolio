@@ -99,12 +99,14 @@ export async function CodeSnippet({
   return (
     <div className="group relative my-6 overflow-hidden rounded-xl border border-border bg-card/60 text-sm">
       {/* Code block header bar */}
-      <div className="flex h-10 items-center justify-between border-b border-border/70 bg-muted/30 px-4">
-        <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+      <div className="flex h-10 items-center justify-between gap-2 border-b border-border/70 bg-muted/30 px-3 sm:px-4">
+        <div className="flex min-w-0 items-center gap-2 font-mono text-xs text-muted-foreground">
           {filename ? (
-            <span className="font-medium text-foreground">{filename}</span>
+            <span className="truncate font-medium text-foreground" title={filename}>
+              {filename}
+            </span>
           ) : (
-            <div className="flex items-center gap-1.5 opacity-60">
+            <div className="flex shrink-0 items-center gap-1.5 opacity-60">
               <span className="h-2.5 w-2.5 rounded-full bg-border" />
               <span className="h-2.5 w-2.5 rounded-full bg-border" />
               <span className="h-2.5 w-2.5 rounded-full bg-border" />
@@ -113,9 +115,9 @@ export async function CodeSnippet({
         </div>
 
         {/* Right side: language label immediately left of the copy button */}
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           {displayLang && (
-            <span className="font-mono text-xs text-muted-foreground">
+            <span className="font-mono text-[11px] sm:text-xs text-muted-foreground">
               {displayLang}
             </span>
           )}
@@ -125,7 +127,7 @@ export async function CodeSnippet({
 
       {/* Code body */}
       <div
-        className="overflow-x-auto p-4 font-mono text-[13.5px] leading-relaxed [&_pre]:!bg-transparent [&_pre]:!p-0 [&_code]:!font-mono"
+        className="overflow-x-auto p-3 sm:p-4 font-mono text-[12px] sm:text-[13.5px] leading-relaxed [&_pre]:!bg-transparent [&_pre]:!p-0 [&_code]:!font-mono"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

@@ -10,11 +10,11 @@ export function ExperienceTimeline() {
         {experience.map((item, i) => (
           <li
             key={item.company}
-            className="relative grid grid-cols-1 gap-2 border-l border-border py-5 pl-6 sm:grid-cols-[1fr_auto] sm:gap-6 sm:pl-8"
+            className="relative grid grid-cols-1 gap-2 border-l border-border py-4 pl-5 sm:grid-cols-[1fr_auto] sm:gap-6 sm:py-5 sm:pl-8"
           >
             <span
               className={cn(
-                'absolute -left-[5px] top-6 h-2.5 w-2.5 rounded-full bg-foreground/80 ring-4 ring-background',
+                'absolute -left-[5px] top-5 sm:top-6 h-2.5 w-2.5 rounded-full bg-foreground/80 ring-4 ring-background',
                 i === 0 && 'bg-blue-600 dark:bg-blue-400',
               )}
             />

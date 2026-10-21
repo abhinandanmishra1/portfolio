@@ -40,7 +40,7 @@ export default function ResearchPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-4xl px-6 pt-28 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 pt-24 sm:pt-28 pb-20">
         <div className="mb-10">
           <Link
             href="/"
@@ -53,7 +53,7 @@ export default function ResearchPage() {
             <BookMarked className="h-3.5 w-3.5" />
             <span>Systems Papershelf</span>
           </div>
-          <h1 className="mt-2 font-serif text-3xl italic font-normal tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-serif text-2xl italic font-normal tracking-tight text-foreground sm:text-4xl">
             Architectural Papershelf & Reading Notes
           </h1>
           <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
@@ -69,11 +69,11 @@ export default function ResearchPage() {
             return (
               <article
                 key={paper.title}
-                className="group rounded-2xl border border-border bg-card/40 p-6 sm:p-8 transition-colors hover:border-border/90"
+                className="group rounded-2xl border border-border bg-card/40 p-5 sm:p-8 transition-colors hover:border-border/90"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-border/60 pb-4">
                   <div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <span className="font-mono text-xs text-muted-foreground">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
